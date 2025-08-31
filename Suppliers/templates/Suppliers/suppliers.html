@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppliers Portal</title>
+  <link rel="stylesheet" href="{% static 'Suppliers/css/suppliers.css' %}">
+</head>
+<body>
+
+  <header>
+    <h1>Welcome Suppliers</h1>
+    <p>Your gateway to connect directly with consumers</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Sign In</a>
+    <a href="{% url 'suppliers_signup' %}">Sign Up</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="info-box">
+      <h2>Be part of our Suppliers</h2>
+      <p>
+        Our goal is to remove unnecessary batches between producers and consumers, 
+        giving you the possibility to connect directly with the consumer without intermediaries. 
+      </p>
+      <p>
+        To join our team, you will need to provide: 
+        <strong>location, full name, address, company name, production activity, 
+        quantity & products in stock, email, and phone number.</strong>
+      </p>
+    </div>
+
+    <div class="action-boxes">
+      <div class="action-box">
+        <h3>Already a Supplier?</h3>
+        <a href="#">Sign In</a>
+      </div>
+      <div class="action-box">
+        <h3>Join Us</h3>
+        <a href="#">Sign Up</a>
+      </div>
+      <div class="action-box">
+        <h3>Learn More</h3>
+        <a href="#">About Us</a>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h2>Legal & Documentation (Spain)</h2>
+      <p>
+        As required by Spanish law, suppliers must review our 
+        <a href="#">Política de Privacidad</a>, 
+        <a href="#">Aviso Legal</a>, and 
+        <a href="#">Protección de Datos</a> 
+        before registering. These documents ensure compliance with the GDPR and 
+        Ley Orgánica de Protección de Datos (LOPD).
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Suppliers Network. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Legal Notice</a> | 
+    <a href="#">Terms & Conditions</a>
+  </footer>
+
+</body>
+</html>

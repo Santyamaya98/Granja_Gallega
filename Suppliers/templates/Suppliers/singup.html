@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Supplier Sign Up</title>
+  <link rel="stylesheet" href="{% static 'Suppliers/css/suppliers.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Join Our Supplier Network</h1>
+    <p>Fill in the form to become part of our team</p>
+  </header>
+
+  <div class="container">
+    <div class="info-box">
+      <form method="post">
+        {% csrf_token %}
+        <label for="fullname">Full Name:</label><br>
+        <input type="text" id="fullname" name="fullname" required><br><br>
+
+        <label for="company">Company Name:</label><br>
+        <input type="text" id="company" name="company" required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="activity">Production Activity:</label><br>
+        <input type="text" id="activity" name="activity" required><br><br>
+
+        <label for="stock">Quantity & Products in Stock:</label><br>
+        <textarea id="stock" name="stock" rows="3" required></textarea><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Suppliers Network</p>
+  </footer>
+</body>
+</html>

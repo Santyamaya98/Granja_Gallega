@@ -1,20 +1,28 @@
 # suppliers/forms.py
 from django import forms
-from localflavor.es.forms import ESPostalCodeField, ESPhoneNumberField, ESProvinceSelect, ESIdentityCardField
+from django.core.validators import RegexValidator
+from localflavor.es.forms import ESPostalCodeField,  ESProvinceSelect, ESIdentityCardNumberField
 from .models import SuppliersModel
+
+phone_validator = RegexValidator(
+    regex=r'^\+?34?\d{9}$',  # Spanish phone numbers (+34 optional, 9 digits)
+    message="Enter a valid Spanish phone number (e.g. +34911123456 or 911123456)."
+)
+
 
 class SuppliersForm(forms.ModelForm):
     zip_code = ESPostalCodeField(
         label="Código Postal",
         help_text="Código postal de 5 dígitos (01000-52999)"
     )
-    
-    phone = ESPhoneNumberField(
+
+    phone = forms.CharField(
         label="Teléfono",
-        help_text="Número de teléfono español"
+        max_length=15,
+        validators=[phone_validator]
     )
-    
-    tax_id = ESIdentityCardField(
+
+    tax_id = ESIdentityCardNumberField(
         required=False,
         label="NIF/CIF/NIE",
         help_text="Documento de identificación fiscal"

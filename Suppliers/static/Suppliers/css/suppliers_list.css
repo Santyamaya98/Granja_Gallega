@@ -1,0 +1,124 @@
+/* ====== General Layout ====== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background: #007bff;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  background: #f4f4f4;
+  padding: 0.8rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.container {
+  padding: 1.5rem;
+}
+
+/* ====== Info Boxes & Messages ====== */
+.info-box {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+}
+
+.info-box.success { background: #d4edda; border-left: 4px solid #28a745; }
+.info-box.error, .info-box.danger { background: #f8d7da; border-left: 4px solid #dc3545; }
+.info-box.warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+.info-box.info { background: #cce7ff; border-left: 4px solid #007bff; }
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ====== Table ====== */
+.table-container {
+  overflow-x: auto;
+}
+
+.suppliers-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.suppliers-table th,
+.suppliers-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.suppliers-table th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.actions {
+  text-align: center;
+}
+
+/* ====== Buttons ====== */
+.btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: black;
+  color: white;
+}
+
+.btn-view {
+  background: #007bff;
+  color: white;
+}
+
+.btn-edit {
+  background: #ffc107;
+  color: black;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+/* ====== Empty State ====== */
+.no-suppliers {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* ====== Footer ====== */
+footer {
+  text-align: center;
+  background: #f1f1f1;
+  padding: 1rem;
+  margin-top: 2rem;
+}

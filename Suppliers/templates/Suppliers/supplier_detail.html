@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ supplier.full_name }} - Details</title>
+  <link rel="stylesheet" href="{% static 'Suppliers/css/supplier_detail.css' %}">
+</head>
+<body>
+
+  <header>
+    <h1>{{ supplier.full_name }}</h1>
+    <p>Supplier Details & Information</p>
+  </header>
+
+  <nav>
+    <a href="{% url 'supplier_list' %}">Back to List</a>
+    <a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
+    <a href="{% url 'supplier_delete' supplier.pk %}">Delete</a>
+    <a href="{% url 'supplier_create' %}">Add New</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="action-boxes">
+      <div class="action-box">
+        <h3>Contact Information</h3>
+        <p><strong>Email:</strong><br>{{ supplier.email }}</p>
+        <p><strong>Phone:</strong><br>{{ supplier.phone|default:"Not provided" }}</p>
+      </div>
+      
+      <div class="action-box">
+        <h3>Company Details</h3>
+        <p><strong>Company:</strong><br>{{ supplier.company_name|default:"Individual Supplier" }}</p>
+        <p><strong>Tax ID:</strong><br>{{ supplier.tax_id|default:"Not provided" }}</p>
+      </div>
+      
+      <div class="action-box">
+        <h3>Location</h3>
+        <p><strong>Address:</strong><br>{{ supplier.address }}</p>
+        <p><strong>Postal Code:</strong><br>{{ supplier.zip_code|default:"Not provided" }}</p>
+        <p><strong>Province:</strong><br>{{ supplier.province|default:"Not provided" }}</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h2>Production Activity</h2>
+      <p>{{ supplier.production_activity }}</p>
+    </div>
+
+    <div class="info-box">
+      <h2>Registration Information</h2>
+      <p><strong>Supplier ID:</strong> {{ supplier.id }}</p>
+      <p><strong>Date Joined:</strong> {{ supplier.date_joined|date:"F d, Y" }}</p>
+      <p><strong>Member Since:</strong> {{ supplier.date_joined|timesince }} ago</p>
+    </div>
+
+    <div class="action-boxes">
+      <div class="action-box">
+        <h3>Edit Information</h3>
+        <a href="{% url 'supplier_edit' supplier.pk %}">Update Details</a>
+      </div>
+      <div class="action-box">
+        <h3>Remove Supplier</h3>
+        <a href="{% url 'supplier_delete' supplier.pk %}" class="danger-btn">Delete Account</a>
+      </div>
+      <div class="action-box">
+        <h3>Contact Supplier</h3>
+        <a href="mailto:{{ supplier.email }}">Send Email</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Suppliers Network. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Legal Notice</a> | 
+    <a href="#">Terms & Conditions</a>
+  </footer>
+
+</body>
+</html>

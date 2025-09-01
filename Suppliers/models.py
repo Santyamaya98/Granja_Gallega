@@ -2,7 +2,7 @@
 import uuid
 from django.db import models
 from localflavor.es.models import ESPostalCodeField, ESIdentityCardNumberField
-
+                                                
 class SuppliersModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     full_name = models.CharField(max_length=150)

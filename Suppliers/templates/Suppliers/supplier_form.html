@@ -1,150 +1,141 @@
+{% extends 'Suppliers/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title|default:"Supplier Form" }}</title>
-  <link rel="stylesheet" href="{% static 'Suppliers/css/suppliers.css' %}">
-  <link rel="stylesheet" href="{% static 'Suppliers/css/supplier_form.css' %}">
-</head>
-<body>
-  <header>
-    <h1>{{ title|default:"Supplier Information" }}</h1>
-    <p>{% if form.instance.pk %}Update supplier information{% else %}Add new supplier to the network{% endif %}</p>
-  </header>
 
-  <nav>
-    <a href="{% url 'supplier_list' %}">Back to List</a>
-    {% if form.instance.pk %}
-      <a href="{% url 'supplier_detail' form.instance.pk %}">View Details</a>
-    {% endif %}
-    <a href="#">Help</a>
-    <a href="#">Contact</a>
-  </nav>
+{% block title %}
+{{ title|default:"Supplier Form" }}
+{% endblock %}
 
-  <div class="container">
-    
-    <!-- Messages -->
-    {% if messages %}
-      {% for message in messages %}
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'Suppliers/css/supplier_form.css' %}">
+{% endblock %}
+
+{% block header %}
+<h1>{{ title|default:"Supplier Information" }}</h1>
+<p>{% if form.instance.pk %}Update supplier information{% else %}Add new supplier to the network{% endif %}</p>
+{% endblock %}
+
+{% block nav %}
+<a href="{% url 'supplier_list' %}">Back to List</a>
+{% if form.instance.pk %}
+<a href="{% url 'supplier_detail' form.instance.pk %}">View Details</a>
+{% endif %}
+<a href="#">Help</a>
+<a href="#">Contact</a>
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
         <div class="info-box message {{ message.tags }}">
-          <p>{{ message }}</p>
+            <p>{{ message }}</p>
         </div>
-      {% endfor %}
-    {% endif %}
+    {% endfor %}
+{% endif %}
 
-    <div class="info-box">
-      <form method="post" class="supplier-form">
+<div class="info-box">
+    <form method="post" class="supplier-form">
         {% csrf_token %}
         
-        <!-- Personal Information -->
         <h3 class="section-title">Personal Information</h3>
         
         {{ form.full_name.label_tag }}
         {{ form.full_name }}
         {% if form.full_name.errors %}
-          <p class="error">{{ form.full_name.errors.0 }}</p>
+            <p class="error">{{ form.full_name.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         {{ form.company_name.label_tag }}
         {{ form.company_name }}
         {% if form.company_name.errors %}
-          <p class="error">{{ form.company_name.errors.0 }}</p>
+            <p class="error">{{ form.company_name.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         {{ form.tax_id.label_tag }}
         {{ form.tax_id }}
         {% if form.tax_id.errors %}
-          <p class="error">{{ form.tax_id.errors.0 }}</p>
+            <p class="error">{{ form.tax_id.errors.0 }}</p>
         {% endif %}
         <br><br>
 
-        <!-- Contact Information -->
         <h3 class="section-title">Contact Information</h3>
         
         {{ form.email.label_tag }}
         {{ form.email }}
         {% if form.email.errors %}
-          <p class="error">{{ form.email.errors.0 }}</p>
+            <p class="error">{{ form.email.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         {{ form.phone.label_tag }}
         {{ form.phone }}
         {% if form.phone.errors %}
-          <p class="error">{{ form.phone.errors.0 }}</p>
+            <p class="error">{{ form.phone.errors.0 }}</p>
         {% endif %}
         <br><br>
 
-        <!-- Location Information -->
         <h3 class="section-title">Location Information</h3>
         
         {{ form.address.label_tag }}
         {{ form.address }}
         {% if form.address.errors %}
-          <p class="error">{{ form.address.errors.0 }}</p>
+            <p class="error">{{ form.address.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         {{ form.zip_code.label_tag }}
         {{ form.zip_code }}
         {% if form.zip_code.errors %}
-          <p class="error">{{ form.zip_code.errors.0 }}</p>
+            <p class="error">{{ form.zip_code.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         {{ form.province.label_tag }}
         {{ form.province }}
         {% if form.province.errors %}
-          <p class="error">{{ form.province.errors.0 }}</p>
+            <p class="error">{{ form.province.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         {{ form.location.label_tag }}
         {{ form.location }}
         {% if form.location.errors %}
-          <p class="error">{{ form.location.errors.0 }}</p>
+            <p class="error">{{ form.location.errors.0 }}</p>
         {% endif %}
         <br><br>
 
-        <!-- Business Information -->
         <h3 class="section-title">Business Information</h3>
         
         {{ form.production_activity.label_tag }}
         {{ form.production_activity }}
         {% if form.production_activity.errors %}
-          <p class="error">{{ form.production_activity.errors.0 }}</p>
+            <p class="error">{{ form.production_activity.errors.0 }}</p>
         {% endif %}
         <br><br>
 
         <div class="form-actions">
-          <button type="submit" class="btn-primary">
+            <button type="submit" class="btn-primary">
             {% if form.instance.pk %}Update Supplier{% else %}Add Supplier{% endif %}
-          </button>
-          <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancel</a>
+            </button>
+            <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancel</a>
         </div>
-      </form>
-    </div>
+    </form>
+</div>
 
-    <!-- Legal Notice -->
-    <div class="info-box">
-      <h2>Legal & Documentation (Spain)</h2>
-      <p>
+<div class="info-box">
+    <h2>Legal & Documentation (Spain)</h2>
+    <p>
         By submitting this form, you agree to our 
         <a href="#">Política de Privacidad</a>, 
         <a href="#">Aviso Legal</a>, and 
         <a href="#">Protección de Datos</a>. 
         All information is processed in compliance with GDPR and 
         Ley Orgánica de Protección de Datos (LOPD).
-      </p>
-    </div>
+    </p>
+</div>
+{% endblock %}
 
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Suppliers Network</p>
-  </footer>
-</body>
-</html>
+{% block footer %}
+<p>&copy; 2025 Suppliers Network</p>
+{% endblock %}

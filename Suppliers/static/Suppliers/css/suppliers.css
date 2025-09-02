@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background: #222;
+  background: #007bff;
   color: white;
   text-align: center;
   padding: 2rem;
@@ -24,20 +24,20 @@ nav {
   justify-content: center;
   gap: 2rem;
   padding: 1rem;
-  background: #111;
+  background: #f4f4f4;
 }
 
 nav a {
   text-decoration: none;
-  color: white;
-  background: black; /* black space for hyperlink */
+  color: rgb(255, 255, 255);
+  background: rgb(47, 113, 255); /* black space for hyperlink */
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
   transition: 0.3s;
 }
 
 nav a:hover {
-  background: #444;
+  background: #01268c;
 }
 
 .container {
@@ -56,7 +56,7 @@ nav a:hover {
 
 .info-box h2 {
   margin-top: 0;
-  color: #222;
+  color: #000000;
 }
 
 .action-boxes {
@@ -81,7 +81,7 @@ nav a:hover {
 .action-box a {
   display: inline-block;
   margin-top: 1rem;
-  background: black;
+  background: rgb(47, 113, 255);
   color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
@@ -90,11 +90,11 @@ nav a:hover {
 }
 
 .action-box a:hover {
-  background: #444;
+  background: #01268c;
 }
 
 footer {
-  background: #222;
+  background: #677ebe;
   color: white;
   text-align: center;
   padding: 1rem;
@@ -102,7 +102,7 @@ footer {
 }
 
 footer a {
-  color: #ddd;
+  color: #000000;
   margin: 0 10px;
   text-decoration: none;
 }

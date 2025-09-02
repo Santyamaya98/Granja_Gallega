@@ -1,85 +1,91 @@
-{% extends 'Suppliers/base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppliers List</title>
+  <link rel="stylesheet" href="{% static 'Suppliers/css/suppliers_list.css' %}">
+</head>
+<body>
 
-{% block title %}
-Suppliers List
-{% endblock %}
+  <header>
+    <h1>All Suppliers</h1>
+    <p>Manage and view all registered suppliers</p>
+  </header>
 
-{% block head_extra %}
-<link rel="stylesheet" href="{% static 'Suppliers/css/suppliers_list.css' %}">
-{% endblock %}
+  <nav>
+    <a href="{% url 'suppliers' %}">Suppliers home</a>
+    <a href="{% url 'supplier_create' %}">Add New</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Reports</a>
+  </nav>
 
-{% block header %}
-<h1>All Suppliers</h1>
-<p>Manage and view all registered suppliers</p>
-{% endblock %}
-
-{% block nav %}
-<a href="{% url 'suppliers' %}">Suppliers home</a>
-<a href="{% url 'supplier_create' %}">Add New</a>
-<a href="#">Dashboard</a>
-<a href="#">Reports</a>
-{% endblock %}
-
-{% block content %}
-{% if messages %}
-    {% for message in messages %} 
+  <div class="container">
+    
+    <!-- Messages -->
+    {% if messages %}
+      {% for message in messages %} 
         <div class="info-box {{ message.tags }}">
-            <p>{{ message }}</p>
+          <p>{{ message }}</p>
         </div>
-    {% endfor %}
-{% endif %}
+      {% endfor %}
+    {% endif %}
 
-<div class="info-box">
-    <div class="header-actions">
+    <div class="info-box">
+      <div class="header-actions">
         <h2>Registered Suppliers ({{ suppliers.count }})</h2>
         <a href="{% url 'supplier_create' %}" class="btn btn-primary">Add New Supplier</a>
-    </div>
-    
-    {% if suppliers %}
+      </div>
+      
+      {% if suppliers %}
         <div class="table-container">
-            <table class="suppliers-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Company</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Location</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for supplier in suppliers %}
-                    <tr>
-                        <td>{{ supplier.full_name }}</td>
-                        <td>{{ supplier.company_name|default:"-" }}</td>
-                        <td>{{ supplier.email }}</td>
-                        <td>{{ supplier.phone|default:"-" }}</td>
-                        <td>{{ supplier.location|default:"-" }}</td>
-                        <td class="actions">
-                            <a href="{% url 'supplier_detail' supplier.pk %}" class="btn btn-view">View</a>
-                            <a href="{% url 'supplier_edit' supplier.pk %}" class="btn btn-edit">Edit</a>
-                            <a href="{% url 'supplier_delete' supplier.pk %}" class="btn btn-delete">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+          <table class="suppliers-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Location</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for supplier in suppliers %}
+              <tr>
+                <td>{{ supplier.full_name }}</td>
+                <td>{{ supplier.company_name|default:"-" }}</td>
+                <td>{{ supplier.email }}</td>
+                <td>{{ supplier.phone|default:"-" }}</td>
+                <td>{{ supplier.location|default:"-" }}</td>
+                <td class="actions">
+                  <a href="{% url 'supplier_detail' supplier.pk %}" class="btn btn-view">View</a>
+                  <a href="{% url 'supplier_edit' supplier.pk %}" class="btn btn-edit">Edit</a>
+                  <a href="{% url 'supplier_delete' supplier.pk %}" class="btn btn-delete">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
-    {% else %}
+      {% else %}
         <div class="no-suppliers">
-            <h3>No suppliers registered yet</h3>
-            <p>Start by adding your first supplier to the network.</p>
-            <a href="{% url 'supplier_create' %}" class="btn btn-primary">Add First Supplier</a>
+          <h3>No suppliers registered yet</h3>
+          <p>Start by adding your first supplier to the network.</p>
+          <a href="{% url 'supplier_create' %}" class="btn btn-primary">Add First Supplier</a>
         </div>
-    {% endif %}
-</div>
-{% endblock %}
+      {% endif %}
+    </div>
 
-{% block footer %}
-<p>&copy; 2025 Suppliers Network. All rights reserved.</p>
-<a href="#">Privacy Policy</a> | 
-<a href="#">Legal Notice</a> | 
-<a href="#">Terms & Conditions</a>
-{% endblock %}
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Suppliers Network. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Legal Notice</a> | 
+    <a href="#">Terms & Conditions</a>
+  </footer>
+
+</body>
+</html>

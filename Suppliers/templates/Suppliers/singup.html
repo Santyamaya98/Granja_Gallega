@@ -5,30 +5,13 @@
 
 {% block header %}
     <h1>Join Our Supplier Network</h1>
-    <p>Fill in the form to become part of our team</p>
+    <p>Fill the form to become part of our team</p>
 {% endblock %}
 
 {% block content %}
     <div class="info-box">
         <form method="post">
             {% csrf_token %}
-            <label for="fullname">Full Name:</label><br>
-            <input type="text" id="fullname" name="fullname" required><br><br>
-
-            <label for="company">Company Name:</label><br>
-            <input type="text" id="company" name="company" required><br><br>
-
-            <label for="location">Location:</label><br>
-            <input type="text" id="location" name="location" required><br><br>
-
-            <label for="address">Address:</label><br>
-            <input type="text" id="address" name="address" required><br><br>
-
-            <label for="activity">Production Activity:</label><br>
-            <input type="text" id="activity" name="activity" required><br><br>
-
-            <label for="stock">Quantity & Products in Stock:</label><br>
-            <textarea id="stock" name="stock" rows="3" required></textarea><br><br>
 
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" required><br><br>
@@ -37,6 +20,10 @@
             <input type="text" id="phone" name="phone" required><br><br>
 
             <button type="submit">Sign Up</button>
+
+            <label for="token">Token:</label><br>
+            <input type="text" id="token" name="token" required><br><br>
+
         </form>
     </div>
 {% endblock %}

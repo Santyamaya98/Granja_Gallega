@@ -3,6 +3,7 @@ from django import forms
 from django.core.validators import RegexValidator
 from localflavor.es.forms import ESPostalCodeField,  ESProvinceSelect, ESIdentityCardNumberField
 from .models import SuppliersModel
+from django.contrib.auth.models import User
 
 phone_validator = RegexValidator(
     regex=r'^\+?34?\d{9}$',  # Spanish phone numbers (+34 optional, 9 digits)
@@ -23,7 +24,7 @@ class SuppliersForm(forms.ModelForm):
     )
 
     tax_id = ESIdentityCardNumberField(
-        required=False,
+        required=True,
         label="NIF/CIF/NIE",
         help_text="Documento de identificación fiscal"
     )
@@ -31,7 +32,7 @@ class SuppliersForm(forms.ModelForm):
     class Meta:
         model = SuppliersModel
         fields = '__all__'
-        exclude = ['id', 'date_joined']  # Exclude auto-generated fields
+        exclude = ['id', 'date_joined', 'user']  # Exclude auto-generated fields
         widgets = {
             'province': ESProvinceSelect(),
         }
@@ -43,3 +44,16 @@ class SuppliersForm(forms.ModelForm):
             'location': 'Localidad',
             'production_activity': 'Actividad Productiva',
         }
+
+class SuppliersSignupForm(forms.Form):
+    token_id = forms.UUIDField(label="Token de Validación")
+    username = forms.CharField(label="Nombre de Usuario", required=True)
+    email = forms.EmailField(label="Correo Electrónico", required=True)
+    password = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    confirm_password = forms.CharField(label="Confirmar Contraseña", widget=forms.PasswordInput)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('password') != cleaned_data.get('confirm_password'):
+            raise ValidationError("Las contraseñas no coinciden.")
+        return cleaned_data

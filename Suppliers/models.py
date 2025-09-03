@@ -1,6 +1,7 @@
 # suppliers/models.py
 import uuid
 from django.db import models
+from django.contrib.auth.models import User
 from localflavor.es.models import ESPostalCodeField, ESIdentityCardNumberField
                                                 
 class SuppliersModel(models.Model):
@@ -18,8 +19,11 @@ class SuppliersModel(models.Model):
     tax_id = ESIdentityCardNumberField(blank=True, null=True)
     
     production_activity = models.CharField(max_length=200, help_text="Type of farming or production activity")
+    approved = models.BooleanField(default=False)  # ✅ Admin must approve
+
     date_joined = models.DateTimeField(auto_now_add=True)   
 
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
     class Meta:
         verbose_name = "Supplier"
         verbose_name_plural = "Suppliers"

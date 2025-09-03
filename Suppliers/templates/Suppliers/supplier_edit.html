@@ -33,8 +33,6 @@
     <!-- FIXED: Dynamic form action based on whether we're creating or editing -->
     <form method="post" class="supplier-form" action="{% url 'supplier_edit' pk=form.instance.pk %}">
         {% csrf_token %}
-        <button type="submit" class="btn-primary">Update Supplier</button>
-        <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancel</a>
             
         <h3 class="section-title">Personal Information</h3>
         

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import SuppliersModel
-from .forms import SuppliersForm
+from .forms import SuppliersForm, SuppliersSignupForm
+# from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 
 # Create your views here.
@@ -54,18 +56,36 @@ def supplier_delete(request, pk):
         return redirect('supplier_list')
     return render(request, 'suppliers/supplier_confirm_delete.html', {'supplier': supplier})
 
-def Suppliers_Sing_Up_View(request):
-    if request.method == "POST":
-        # here you would normally process the form and save to DB
-        fullname = request.POST.get("fullname")
-        company = request.POST.get("company")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        confirm_password = request.POST.get("confirm_password")
-        if password != confirm_password:
-            return HttpResponse("Passwords do not match!")
-        # TODO: Save supplier to DB via a Model (e.g., Supplier model)
+def Suppliers_Sign_Up_View(request):
+    if request.method == 'POST':
+        form = SuppliersSignupForm(request.POST)
+        if form.is_valid():
+            token_id = form.cleaned_data['token_id']
 
-        return HttpResponse(f"Thanks {fullname}, your registration has been received!")
+            # 1. Validate supplier by token (uuid)
+            supplier = get_object_or_404(SuppliersModel, pk=token_id, approved=True)
 
-    return render(request, "Suppliers/singup.html")
+            if supplier.user:
+                messages.error(request, "Este proveedor ya tiene una cuenta de usuario.")
+                return redirect('login')
+
+            # 2. Create user
+            user = User.objects.create_user(
+                username=form.cleaned_data['username'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password']
+            )
+
+            # 3. Link supplier to new user
+            supplier.user = user
+            supplier.save()
+
+            messages.success(request, "Cuenta creada exitosamente! Ahora puedes iniciar sesión.")
+            return redirect('Login') # TODO log in
+    else:
+        form = SuppliersSignupForm()
+
+    return render(request, 'suppliers/signup.html', {
+        'form': form,
+        'title': "Crear Usuario"
+    })

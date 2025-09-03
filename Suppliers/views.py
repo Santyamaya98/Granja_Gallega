@@ -15,6 +15,10 @@ def Suppliers_List(request):
     suppliers = SuppliersModel.objects.all()
     return render(request, "Suppliers/supplier_list.html", {'suppliers': suppliers})
 
+def supplier_detail(request, pk):
+    """View supplier details"""
+    supplier = get_object_or_404(SuppliersModel, pk=pk)
+    return render(request, 'suppliers/supplier_detail.html', {'supplier': supplier})
 
 def supplier_create(request):
     """Create new supplier"""
@@ -26,12 +30,7 @@ def supplier_create(request):
             return redirect('supplier_list')
     else:
         form = SuppliersForm()
-    return render(request, 'suppliers/supplier_form.html', {'form': form, 'title': 'Crear Proveedor'})
-
-def supplier_detail(request, pk):
-    """View supplier details"""
-    supplier = get_object_or_404(SuppliersModel, pk=pk)
-    return render(request, 'suppliers/supplier_detail.html', {'supplier': supplier})
+    return render(request, 'suppliers/supplier_create.html', {'form': form, 'title': 'Crear Proveedor'})
 
 def supplier_edit(request, pk):
     """Edit supplier"""
@@ -44,7 +43,7 @@ def supplier_edit(request, pk):
             return redirect('supplier_detail', pk=supplier.pk)
     else:
         form = SuppliersForm(instance=supplier)
-    return render(request, 'suppliers/supplier_form.html', {'form': form, 'title': 'Editar Proveedor'})
+    return render(request, 'suppliers/supplier_edit.html', {'form': form, 'title': 'Editar Proveedor'})
 
 def supplier_delete(request, pk):
     """Delete supplier"""
@@ -61,7 +60,10 @@ def Suppliers_Sing_Up_View(request):
         fullname = request.POST.get("fullname")
         company = request.POST.get("company")
         email = request.POST.get("email")
-
+        password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
+        if password != confirm_password:
+            return HttpResponse("Passwords do not match!")
         # TODO: Save supplier to DB via a Model (e.g., Supplier model)
 
         return HttpResponse(f"Thanks {fullname}, your registration has been received!")

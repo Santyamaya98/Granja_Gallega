@@ -75,3 +75,17 @@ form label {
   border-left: 4px solid #007bff;
   color: #004085;
 }
+
+
+.supplier-link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background: rgb(27, 67, 155);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.supplier-link:hover {
+  background: #01268c;
+}

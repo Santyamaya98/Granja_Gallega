@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-{{ title|default:"Supplier Form" }}
+{{ title|default:"Crear Proveedor" }}
 {% endblock %}
 
 {% block head_extra %}
@@ -10,17 +10,14 @@
 {% endblock %}
 
 {% block header %}
-<h1>{{ title|default:"Supplier Information" }}</h1>
-<p>{% if form.instance.pk %}Update supplier information{% else %}Add new supplier to the network{% endif %}</p>
+<h1>{{ title|default:"Información del Proveedor" }}</h1>
+<p>Añadir nuevo proveedor a la red</p>
 {% endblock %}
 
 {% block nav %}
-<a href="{% url 'supplier_list' %}">Back to List</a>
-{% if form.instance.pk %}
-<a href="{% url 'supplier_detail' form.instance.pk %}">View Details</a>
-{% endif %}
-<a href="#">Help</a>
-<a href="#">Contact</a>
+<a href="{% url 'supplier_list' %}" class="supplier-link">Volver a la Lista</a>
+<a href="#" class="supplier-link">Ayuda</a>
+<a href="#" class="supplier-link">Contacto</a>
 {% endblock %}
 
 {% block content %}
@@ -33,10 +30,11 @@
 {% endif %}
 
 <div class="info-box">
-    <form method="post" class="supplier-form">
+    <form method="post" class="supplier-form" action="{% url 'supplier_create' %}">
+        
         {% csrf_token %}
         
-        <h3 class="section-title">Personal Information</h3>
+        <h3 class="section-title">Información Personal</h3>
         
         {{ form.full_name.label_tag }}
         {{ form.full_name }}
@@ -59,7 +57,7 @@
         {% endif %}
         <br><br>
 
-        <h3 class="section-title">Contact Information</h3>
+        <h3 class="section-title">Información de Contacto</h3>
         
         {{ form.email.label_tag }}
         {{ form.email }}
@@ -75,7 +73,7 @@
         {% endif %}
         <br><br>
 
-        <h3 class="section-title">Location Information</h3>
+        <h3 class="section-title">Información de Ubicación</h3>
         
         {{ form.address.label_tag }}
         {{ form.address }}
@@ -105,7 +103,7 @@
         {% endif %}
         <br><br>
 
-        <h3 class="section-title">Business Information</h3>
+        <h3 class="section-title">Información del Negocio</h3>
         
         {{ form.production_activity.label_tag }}
         {{ form.production_activity }}
@@ -115,27 +113,14 @@
         <br><br>
 
         <div class="form-actions">
-            <button type="submit" class="btn-primary">
-            {% if form.instance.pk %}Update Supplier{% else %}Add Supplier{% endif %}
-            </button>
-            <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancel</a>
+            <button type="submit" class="btn-primary">Añadir Proveedor</button>
+            <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>
-
-<div class="info-box">
-    <h2>Legal & Documentation (Spain)</h2>
-    <p>
-        By submitting this form, you agree to our 
-        <a href="#">Política de Privacidad</a>, 
-        <a href="#">Aviso Legal</a>, and 
-        <a href="#">Protección de Datos</a>. 
-        All information is processed in compliance with GDPR and 
-        Ley Orgánica de Protección de Datos (LOPD).
-    </p>
-</div>
 {% endblock %}
-
 {% block footer %}
-<p>&copy; 2025 Suppliers Network</p>
+    <p>&copy; 2025 Red de Proveedores. Todos los derechos reservados.</p>
+    <a href="#">Política de Privacidad</a> |
+    <a href="#">Términos del Servicio</a>
 {% endblock %}

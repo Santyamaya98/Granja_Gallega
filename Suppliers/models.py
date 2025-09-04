@@ -31,6 +31,6 @@ class SuppliersModel(models.Model):
 
 
     def __str__(self):
-        return f'{self.id} : {self.full_name}\n- {self.company_name}\n- {self.email}\n- {self.address}\n- {self.production_activity}\n- {self.date_joined}\n - {self.phone}\n - {self.zip_code}\n - {self.province}\n - {self.location}\n - {self.tax_id}\n '
+        return f'{self.approved}\n {self.id}\n- {self.full_name}\n- {self.company_name}\n- {self.email}\n- {self.address}\n- {self.production_activity}\n- {self.date_joined}\n - {self.phone}\n - {self.zip_code}\n - {self.province}\n - {self.location}\n - {self.tax_id}\n '
 
 

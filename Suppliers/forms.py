@@ -3,7 +3,8 @@ from django import forms
 from django.core.validators import RegexValidator
 from localflavor.es.forms import ESPostalCodeField,  ESProvinceSelect, ESIdentityCardNumberField
 from .models import SuppliersModel
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.core.exceptions import ValidationError
 
 phone_validator = RegexValidator(
     regex=r'^\+?34?\d{9}$',  # Spanish phone numbers (+34 optional, 9 digits)
@@ -56,4 +57,22 @@ class SuppliersSignupForm(forms.Form):
         cleaned_data = super().clean()
         if cleaned_data.get('password') != cleaned_data.get('confirm_password'):
             raise ValidationError("Las contraseñas no coinciden.")
+        return cleaned_data
+    
+class SupplierLoginForm(forms.Form):
+    username = forms.CharField(label="Nombre de Usuario", required=True)
+    password = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    remember_me = forms.BooleanField(label="Recuérdame", required=False)
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if not user:
+                raise forms.ValidationError("Nombre de usuario o contraseña incorrectos.")
+            if not user.is_active:
+                raise forms.ValidationError("Esta cuenta está inactiva.")
         return cleaned_data

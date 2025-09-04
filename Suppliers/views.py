@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import SuppliersModel
-from .forms import SuppliersForm, SuppliersSignupForm
+from .forms import SuppliersForm, SuppliersSignupForm, SupplierLoginForm
 # from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
@@ -73,7 +75,7 @@ def Suppliers_Sign_Up_View(request):
             user = User.objects.create_user(
                 username=form.cleaned_data['username'],
                 email=form.cleaned_data['email'],
-                password=form.cleaned_data['password']
+                password=form.cleaned_data['password'],
             )
 
             # 3. Link supplier to new user
@@ -87,5 +89,42 @@ def Suppliers_Sign_Up_View(request):
 
     return render(request, 'suppliers/signup.html', {
         'form': form,
-        'title': "Crear Usuario"
+        'title': "Suppliers Users Signup"
     })
+
+def Suppliers_Login_View(request):
+    if request.method == 'POST':
+        form = SupplierLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            remember_me = form.cleaned_data['remember_me']
+
+            user = authenticate(request, username=username, password=password, instance=pk)
+            if user is not None:
+                from django.contrib.auth import login
+                login(request, user)
+
+                if not remember_me:
+                    request.session.set_expiry(0)  # Session expires on browser close
+
+                messages.success(request, "Has iniciado sesión exitosamente.")
+                return redirect('supplier_detail', pk=user.pk)  # Redirect to a success page.
+            else:
+                messages.error(request, "Nombre de usuario o contraseña incorrectos.")
+    else:
+        form = SupplierLoginForm()
+
+    return render(request, 'suppliers/login.html', {
+        'form': form,
+        'title': "Suppliers Users Login"
+    })
+
+def Suppliers_Logout_View(request):
+    
+    logout(request)
+    messages.success(request, "Has cerrado sesión exitosamente.")
+    return redirect('Login')  # Redirect to a success page.
+
+def Suppliers_Dashboard_View(request):
+    return HttpResponse("Dashboard - To be implemented")

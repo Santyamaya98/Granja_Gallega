@@ -4,7 +4,7 @@ from .models import SuppliersModel
 from .forms import SuppliersForm, SuppliersSignupForm, SupplierLoginForm
 # from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
@@ -100,16 +100,30 @@ def Suppliers_Login_View(request):
             password = form.cleaned_data['password']
             remember_me = form.cleaned_data['remember_me']
 
-            user = authenticate(request, username=username, password=password, instance=pk)
+            user = authenticate(request, username=username, password=password)
+            
             if user is not None:
-                from django.contrib.auth import login
+                # 1. Log the user in first
                 login(request, user)
 
+                # 2. Handle the session expiry logic
                 if not remember_me:
                     request.session.set_expiry(0)  # Session expires on browser close
 
                 messages.success(request, "Has iniciado sesión exitosamente.")
-                return redirect('supplier_detail', pk=user.pk)  # Redirect to a success page.
+                
+                # 3. Then, handle the redirection
+                try:
+                    # Access the related supplier object from the user
+                    supplier = SuppliersModel.objects.get(user=user)
+                    return redirect('supplier_detail', pk=supplier.pk)
+                except SuppliersModel.DoesNotExist:
+                    # Handle the case where a User has no related SupplierModel
+                    messages.error(request, "Error: Cuenta de proveedor no encontrada.")
+                    # Redirect to a generic page or log out the user
+                    return redirect('suppliers')
+            
+            # The 'else' should handle the authentication failure
             else:
                 messages.error(request, "Nombre de usuario o contraseña incorrectos.")
     else:
@@ -119,7 +133,6 @@ def Suppliers_Login_View(request):
         'form': form,
         'title': "Suppliers Users Login"
     })
-
 def Suppliers_Logout_View(request):
     
     logout(request)

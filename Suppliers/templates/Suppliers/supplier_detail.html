@@ -11,10 +11,12 @@
 {% endblock %}
 
 {% block nav %}
-<a href="{% url 'supplier_list' %}">Back to List</a>
+<a href="{% url 'suppliers' %}">Back to List</a> 
+<!-- <a href="{% url 'supplier_list' %}">Back to List</a> 
 <a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
 <a href="{% url 'supplier_delete' supplier.pk %}">Delete</a>
-<a href="{% url 'supplier_create' %}">Add New</a>
+<a href="{% url 'supplier_create' %}">Add New</a> 
+ This must be accesible just for admin users --> 
 {% endblock %}
 
 {% block content %}

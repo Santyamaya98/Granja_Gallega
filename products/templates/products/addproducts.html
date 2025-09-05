@@ -1,0 +1,86 @@
+{% extends 'Suppliers/base.html' %}
+{% load static %}
+
+{% block title %}
+Añadir producto - Products
+{% endblock %}
+
+{% block nav %}
+<a href="#" class="supplier-link">Lista de productos</a>
+<a href="#" class="supplier-link">Promociones</a>
+{% endblock %}
+
+{% block header %}
+<h1>{{ title|default:"Descripción del Producto" }}</h1>
+<p>Añadir nuevo producto a tu estante virtual</p>
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="info-box message {{ message.tags }}">
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="info-box">
+    <form method="post" class="product-form" action="{% url 'addproducts' %}">
+        {% csrf_token %}
+        <input type="hidden" name="supplier_id" value="{{ supplier.id }}">
+
+        {% if form.non_field_errors %}
+            <div class="error">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {% if form.name.errors %}
+            <p class="error">{{ form.name.errors.0 }}</p>
+        {% endif %}
+        <br><br>
+
+        <h3 class="section-title">Información del Producto</h3>
+
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {% if form.description.errors %}
+            <p class="error">{{ form.description.errors.0 }}</p>
+        {% endif %}
+        <br><br>
+
+        {{ form.price.label_tag }}
+        {{ form.price }}
+        {% if form.price.errors %}
+            <p class="error">{{ form.price.errors.0 }}</p>
+        {% endif %}
+
+        {{ form.stock.label_tag }}
+        {{ form.stock }}
+        {% if form.stock.errors %}
+            <p class="error">{{ form.stock.errors.0 }}</p>
+        {% endif %}
+
+        {% if form.promotion %}
+            {{ form.promotion.label_tag }}
+            {{ form.promotion }}
+            {% if form.promotion.errors %}
+                <p class="error">{{ form.promotion.errors.0 }}</p>
+            {% endif %}
+        {% endif %}
+        <br><br>
+
+        <button type="submit" class="submit-btn">Guardar Producto</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+<p>&copy; 2025 Products Network. All rights reserved.</p>
+<a href="#">Privacy Policy</a> | 
+<a href="#">Legal Notice</a> | 
+<a href="#">Terms of Service</a>
+{% endblock %}
+  

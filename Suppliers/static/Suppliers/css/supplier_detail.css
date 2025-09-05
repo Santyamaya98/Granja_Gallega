@@ -56,7 +56,7 @@ nav a:hover {
   background: white;
   border-radius: 6px;
   padding: 1.2rem;
-  margin: 1rem;
+  margin: 2rem;
   margin-bottom: 1.0rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
@@ -83,7 +83,7 @@ nav a:hover {
 .action-box a {
   display: inline-block;
   margin-top: 0.8rem;
-  background: #rgb(0 48 152);
+  background:  rgb(0 48 152);
   color: white;
   padding: 0.6rem 1rem;
   border-radius: 4px;

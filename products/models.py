@@ -1,0 +1,25 @@
+from django.db import models
+from Suppliers.models import SuppliersModel
+# Create your models here.
+class SuppliersProductsModel(models.Model):
+    # 1. Validate supplier by token (uuid)
+
+    supplier = models.ForeignKey(SuppliersModel, on_delete=models.CASCADE, related_name="products")
+    # supplierProducts = supplier.products.all(id='uuid') this will find all products for a supplier
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    expiration_date = models.DateField()    
+    promotion = models.BooleanField(default=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Supplier Product"
+        verbose_name_plural = "Supplier Products"
+        ordering = ['-created_at']  
+
+    def __str__(self):
+        return f'- name: {self.name}\n - description: {self.description}\n - expiration_date: {self.expiration_date}\n - price: {self.price}\n - stock: {self.stock}\n - promotion: {self.promotion}'
+    

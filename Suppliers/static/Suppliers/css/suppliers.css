@@ -42,13 +42,13 @@ nav a:hover {
 
 .container {
   max-width: 1000px;
-  margin: 2rem auto;
   padding: 1rem;
+  margin: 1rem auto;
 }
 
 .info-box {
-  margin: 2rem;
   background: white;
+  margin: 1rem;
   padding: 2rem;
   margin-bottom: 2rem;
   border-radius: 10px;

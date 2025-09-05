@@ -16,25 +16,25 @@
 {% block content %}
     <div class="info-box">
         <h2>Be part of our Suppliers</h2>
-        <p>
+        <p1>
             Our goal is to remove unnecessary batches between producers and consumers, 
             giving you the possibility to connect directly with the consumer without intermediaries. 
-        </p>
-        <p>
+        </p1>
+        <p1>
             To join our team, you will need to provide: 
             <strong>location, full name, address, company name, production activity, 
             quantity & products in stock, email, and phone number.</strong>
-        </p>
+        </p1>
     </div>
 
     <div class="action-boxes">
         <div class="action-box">
             <h3>Already a Supplier?</h3>
-            <a href="#">Sign In</a>
+            <a href= "{% url 'Login' %}" >Sign In</a>
         </div>
         <div class="action-box">
             <h3>Join Us</h3>
-            <a href="#">Sign Up</a>
+            <a href="{% url 'suppliers_signup' %}">Sign Up</a>
         </div>
         <div class="action-box">
             <h3>Learn More</h3>
@@ -44,14 +44,14 @@
 
     <div class="info-box">
         <h2>Legal & Documentation (Spain)</h2>
-        <p>
+        <p1>
             As required by Spanish law, suppliers must review our 
             <a href="#">Política de Privacidad</a>, 
             <a href="#">Aviso Legal</a>, and 
             <a href="#">Protección de Datos</a> 
             before registering. These documents ensure compliance with the GDPR and 
             Ley Orgánica de Protección de Datos (LOPD).
-        </p>
+        </p1>
     </div>
 {% endblock %}
 

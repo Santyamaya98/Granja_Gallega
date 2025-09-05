@@ -52,21 +52,25 @@ nav a:hover {
 
 /* Info & Action Boxes */
 .info-box, .action-box {
+
   background: white;
   border-radius: 6px;
   padding: 1.2rem;
-  margin-bottom: 1.5rem;
+  margin: 1rem;
+  margin-bottom: 1.0rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+
 .info-box h2 {
-  margin-top: 0;
+  margin: 1;
   border-bottom: 2px solid #eee;
   padding-bottom: 0.5rem;
 }
 
 /* Action Boxes Grid */
 .action-boxes {
+  margin-bottom: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
@@ -79,7 +83,7 @@ nav a:hover {
 .action-box a {
   display: inline-block;
   margin-top: 0.8rem;
-  background: #007bff;
+  background: #rgb(0 48 152);
   color: white;
   padding: 0.6rem 1rem;
   border-radius: 4px;
@@ -91,13 +95,6 @@ nav a:hover {
   background: #0056b3;
 }
 
-.danger-btn {
-  background: #dc3545 !important;
-}
-
-.danger-btn:hover {
-  background: #a71d2a !important;
-}
 
 /* Footer */
 footer {

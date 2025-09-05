@@ -43,28 +43,28 @@
 
 <div class="info-box">
     <h2>Production Activity</h2>
-    <p>{{ supplier.production_activity }}</p>
+    <p1>{{ supplier.production_activity }}</p1>
 </div>
 
 <div class="info-box">
     <h2>Registration Information</h2>
-    <p><strong>Supplier ID:</strong> {{ supplier.id }}</p>
-    <p><strong>Date Joined:</strong> {{ supplier.date_joined|date:"F d, Y" }}</p>
-    <p><strong>Member Since:</strong> {{ supplier.date_joined|timesince }} ago</p>
+    <p1><strong>Supplier ID:</strong> {{ supplier.id }}</p1>
+    <p1><br><strong>Date Joined:</strong> {{ supplier.date_joined|date:"F d, Y" }}</p1>
+    <p1><br><strong>Member Since:</strong> {{ supplier.date_joined|timesince }} ago</p1>
 </div>
-
+<!-- Action Boxes -->
 <div class="action-boxes">
     <div class="action-box">
-        <h3>Edit Information</h3>
-        <a href="{% url 'supplier_edit' supplier.pk %}">Update Details</a>
+        <h3>Añadir productos</h3>
+        <a href="#">Add products</a>
     </div>
     <div class="action-box">
-        <h3>Remove Supplier</h3>
-        <a href="{% url 'supplier_delete' supplier.pk %}" class="danger-btn">Delete Account</a>
+        <h3>Actualizar Productos</h3>
+        <a href="#" class="danger-btn">Update Productos</a>
     </div>
     <div class="action-box">
-        <h3>Contact Supplier</h3>
-        <a href="mailto:{{ supplier.email }}">Send Email</a>
+        <h3>Montar promociones</h3>
+        <a href="#">Promotions</a>
     </div>
 </div>
 {% endblock %}
@@ -74,4 +74,4 @@
 <a href="#">Privacy Policy</a> | 
 <a href="#">Legal Notice</a> | 
 <a href="#">Terms & Conditions</a>
-{% endblock %}
+{% endblock %}  

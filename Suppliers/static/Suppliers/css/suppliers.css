@@ -47,15 +47,16 @@ nav a:hover {
 }
 
 .info-box {
+  margin: 2rem;
   background: white;
   padding: 2rem;
   margin-bottom: 2rem;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .info-box h2 {
-  margin-top: 0;
+  margin-top: 2;
   color: #000000;
 }
 
@@ -66,9 +67,9 @@ nav a:hover {
 }
 
 .action-box {
-  background: #fff;
+  background: #007bff;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.3s;
@@ -79,9 +80,9 @@ nav a:hover {
 }
 
 .action-box a {
-  display: inline-block;
+  display: inline;
   margin-top: 1rem;
-  background: rgb(47, 113, 255);
+  background: rgb(0 48 152);
   color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
@@ -110,3 +111,12 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+.action-box h3 {
+  color: #ffffff;
+}
+
+.action-box strong, p {
+  color:#ffffff;
+}
+

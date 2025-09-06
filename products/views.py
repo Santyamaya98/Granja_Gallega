@@ -6,31 +6,23 @@ from .models import SuppliersProductsModel
 from Suppliers.models import SuppliersModel
 
 def products_add_view(request, pk):
-    
-    supplier = get_object_or_404(SuppliersModel, pk=pk, approved=True)
-
+    supplier = get_object_or_404(SuppliersModel, pk=pk)
     if request.method == 'POST':
         form = SuppliersProductsForm(request.POST)
         if form.is_valid():
-            # 3. Create the product object in memory, but DON'T save to DB yet.
             product = form.save(commit=False)
-
-            # 4. Set the supplier relationship on the new product object.
-            product.supplier = supplier
-
-            # 5. Now, save the complete object to the database.
+            product.supplier = supplier  # Make sure product is linked to supplier!
             product.save()
-
+            supplier.save()
             messages.success(request, 'Producto añadido exitosamente!')
-            # Redirect to the detail page for the supplier we're working with
-            return redirect('Suppliers:supplier_detail', pk=supplier.pk)
-    else:
-        # If it's a GET request, create an empty form
+            return redirect('supplier_detail', pk=pk)
+        else:
+            messages.error(request, 'Error al añadir el producto. Revisa los datos.')
+            print(form.errors) # This is key! It shows general form errors
+            print(form.non_field_errors()) # And non-field errors
+            messages.error(request, 'Error al añadir el producto. Revisa los datos.')
+    else:  # GET request
         form = SuppliersProductsForm()
 
-    # Pass both the form and the supplier to the template
-    context = {
-        'form': form,
-        'supplier': supplier
-    }
+    context = {'form': form, 'supplier': supplier}
     return render(request, 'products/addproducts.html', context)

@@ -3,7 +3,6 @@ from .models import SuppliersProductsModel
 from django.core.exceptions import ValidationError
 
 class SuppliersProductsForm(forms.ModelForm):
-
     name = forms.CharField(max_length=100, label="Product Name")
     description = forms.CharField(widget=forms.Textarea, label="Product Description")   
     expiration_date = forms.DateField(widget=forms.SelectDateWidget, label="Expiration Date")
@@ -22,8 +21,15 @@ class SuppliersProductsForm(forms.ModelForm):
 
     class Meta:
         model = SuppliersProductsModel
-        fields = '__all__'
-
+        # List model fields explicitly (exclude confirm_price!)
+        fields = [
+            'name',
+            'description',
+            'expiration_date',
+            'promotion',
+            'price',
+            'stock',
+        ]
         labels = {
             'name': "Product Name",
             'description': "Product Description",

@@ -19,6 +19,13 @@ Añadir producto - Products
 {% block content %}
 
 <div class="info-box">
+{% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <form method="post" class="product-form" action="{% url 'addproducts' pk=supplier.pk %}">
         {% csrf_token %}
         <input type="hidden" name="supplier_id" value="{{ supplier.id }}">
@@ -56,13 +63,21 @@ Añadir producto - Products
         {% if form.confirm_price.errors %}
             <p class="error">{{ form.confirm_price.errors.0 }}</p>
         {% endif %}
+        <br><br>
 
+        {{ form.expiration_date.label_tag }}
+        {{ form.expiration_date }}
+        {% if form.expiration_date.errors %}
+            <p class="error">{{ form.expiration_date.errors.0 }}</p>
+        {% endif %}
+        <br><br>
         {{ form.stock.label_tag }}
         {{ form.stock }}
         {% if form.stock.errors %}
             <p class="error">{{ form.stock.errors.0 }}</p>
         {% endif %}
 
+        <br><br>
         {% if form.promotion %}
             {{ form.promotion.label_tag }}
             {{ form.promotion }}

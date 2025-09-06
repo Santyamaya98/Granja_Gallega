@@ -8,6 +8,16 @@
 {% block header %}
 <h1>{{ supplier.full_name }}</h1>
 <p>Supplier Details & Information</p>
+
+{# Display any messages (success/error) to the user #}
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% endblock %}
 
 {% block nav %}

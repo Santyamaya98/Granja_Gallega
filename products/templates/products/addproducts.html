@@ -57,6 +57,12 @@ Añadir producto - Products
             <p class="error">{{ form.price.errors.0 }}</p>
         {% endif %}
 
+        {{ form.confirm_price.label_tag }}
+        {{ form.confirm_price }}
+        {% if form.confirm_price.errors %}
+            <p class="error">{{ form.confirm_price.errors.0 }}</p>
+        {% endif %}
+
         {{ form.stock.label_tag }}
         {{ form.stock }}
         {% if form.stock.errors %}

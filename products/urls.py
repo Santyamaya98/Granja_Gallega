@@ -4,5 +4,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('add_products/', views.products_add_view, name='addproducts'),
-]
+    path('<uuid:pk>/add_products/', views.products_add_view, name='addproducts'),
+]   

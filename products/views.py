@@ -13,7 +13,6 @@ def products_add_view(request, pk):
             product = form.save(commit=False)
             product.supplier = supplier  # Make sure product is linked to supplier!
             product.save()
-            supplier.save()
             messages.success(request, 'Producto añadido exitosamente!')
             return redirect('supplier_detail', pk=pk)
         else:

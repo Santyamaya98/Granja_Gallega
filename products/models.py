@@ -1,11 +1,10 @@
 from django.db import models
 from Suppliers.models import SuppliersModel
 # Create your models here.
-class SuppliersProductsModel(models.Model):
+class SuppliersProductsModel(models.Model): 
     # 1. Validate supplier by token (uuid)
-
+    id = models.AutoField(primary_key=True)
     supplier = models.ForeignKey(SuppliersModel, on_delete=models.CASCADE, related_name="products")
-    # supplierProducts = supplier.products.all(id='uuid') this will find all products for a supplier
     name = models.CharField(max_length=100)
     description = models.TextField()
     expiration_date = models.DateField()    

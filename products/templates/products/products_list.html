@@ -1,0 +1,55 @@
+{% extends 'Suppliers/base.html' %}
+{% load static %}
+
+{% block title %} Lista de Productos - {{ supplier.name }} {% endblock %}
+{% block nav %}
+<td class="actions">
+<a href="{% url 'addproducts' pk=supplier.pk %}" class="supplier-link">Añadir Producto</a>
+<a href="#" class="supplier-link">Promociones</a>
+</td>
+{% endblock %}
+
+{% block header %}
+<h1>Lista de Productos - {{ supplier.full_name }}</h1>
+<p>Aquí puedes ver todos los productos de este proveedor.</p>
+{% endblock %}
+{% block content %} 
+<div class="info-box">
+    <h2>Productos de {{ supplier.full_name }} ({{ products.count }})</h2>   
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Fecha de Expiración</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td><p1>{{ product.name }}</p1></td>
+            <td><p1>{{ product.description }}</p></td>
+            <td><p1>{{ product.price }}</p1></td>
+            <td><p1>{{ product.expiration_date }}</p></td>
+            <td><p1>{{ product.stock }}</p1></td>
+            <td>
+                <div class="info-box">
+                    <div class="actions">
+                        <a href="#">Editar</a>
+                        <a href="#">Eliminar</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No hay productos disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

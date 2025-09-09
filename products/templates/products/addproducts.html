@@ -6,7 +6,7 @@ Añadir producto - Products
 {% endblock %}
 
 {% block nav %}
-<a href="#" class="supplier-link">Lista de productos</a>
+<a href="{% url 'products_list' pk=supplier.pk %}" class="supplier-link">Lista de productos</a>
 <a href="#" class="supplier-link">Promociones</a>
 {% endblock %}
 

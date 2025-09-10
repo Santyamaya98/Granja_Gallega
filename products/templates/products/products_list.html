@@ -14,9 +14,10 @@
 <p>Aquí puedes ver todos los productos de este proveedor.</p>
 {% endblock %}
 {% block content %} 
-<div class="info-box">
+
+    <div class="info-box">
     <h2>Productos de {{ supplier.full_name }} ({{ products.count }})</h2>   
-<table>
+<table class="table-custom">    
     <thead>
         <tr>
             <th>Nombre</th>
@@ -36,12 +37,11 @@
             <td><p1>{{ product.expiration_date }}</p></td>
             <td><p1>{{ product.stock }}</p1></td>
             <td>
-                <div class="info-box">
-                    <div class="actions">
+                    <div class="action-box">
                         <a href="#">Editar</a>
                         <a href="#">Eliminar</a>
                     </div>
-                </div>
+                
             </td>
         </tr>
         {% empty %}
@@ -51,5 +51,7 @@
         {% endfor %}
     </tbody>
 </table>
-</div>
+
+    </div>
+
 {% endblock %}

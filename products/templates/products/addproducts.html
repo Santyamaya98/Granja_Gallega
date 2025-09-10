@@ -36,48 +36,55 @@ Añadir producto - Products
             </div>
         {% endif %}
 
+    <div class="action-boxes">
+        <div class="action-box">
         {{ form.name.label_tag }}
         {{ form.name }}
         {% if form.name.errors %}
             <p class="error">{{ form.name.errors.0 }}</p>
         {% endif %}
+
         <br><br>
-
-        <h3 class="section-title">Información del Producto</h3>
-
-        {{ form.description.label_tag }}
-        {{ form.description }}
-        {% if form.description.errors %}
-            <p class="error">{{ form.description.errors.0 }}</p>
-        {% endif %}
-        <br><br>
-
+       
         {{ form.price.label_tag }}
         {{ form.price }}
         {% if form.price.errors %}
             <p class="error">{{ form.price.errors.0 }}</p>
         {% endif %}
 
+        <br><br>
+
         {{ form.confirm_price.label_tag }}
         {{ form.confirm_price }}
         {% if form.confirm_price.errors %}
             <p class="error">{{ form.confirm_price.errors.0 }}</p>
         {% endif %}
-        <br><br>
+        </div>  
 
+        <div class="action-box">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {% if form.description.errors %}
+            <p class="error">{{ form.description.errors.0 }}</p>
+        {% endif %}
+        </div>
+
+        <div class="action-box">
         {{ form.expiration_date.label_tag }}
         {{ form.expiration_date }}
         {% if form.expiration_date.errors %}
             <p class="error">{{ form.expiration_date.errors.0 }}</p>
         {% endif %}
-        <br><br>
+        
         {{ form.stock.label_tag }}
         {{ form.stock }}
         {% if form.stock.errors %}
             <p class="error">{{ form.stock.errors.0 }}</p>
         {% endif %}
+        
+    
 
-        <br><br>
+
         {% if form.promotion %}
             {{ form.promotion.label_tag }}
             {{ form.promotion }}
@@ -85,8 +92,11 @@ Añadir producto - Products
                 <p class="error">{{ form.promotion.errors.0 }}</p>
             {% endif %}
         {% endif %}
-        <br><br>
+    </div>
+        </div>
 
+        <br><br>
+        
         <button type="submit" class="submit-btn">Guardar Producto</button>
     </form>
 </div>

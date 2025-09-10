@@ -7,7 +7,7 @@ class ProductsSerializer(serializers.ModelSerializer):
         fields = [ 'id', 
                   'supplier', 
                   'updated_at', 
-                  'created_at'
+                  'created_at',
                   'name', 
                   'description', 
                   'expiration_date', 
@@ -15,4 +15,6 @@ class ProductsSerializer(serializers.ModelSerializer):
                   'price', 
                   'stock'
                   ]
+        
+
         

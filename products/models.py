@@ -17,7 +17,7 @@ class SuppliersProductsModel(models.Model):
     class Meta:
         verbose_name = "Supplier Product"
         verbose_name_plural = "Supplier Products"
-        ordering = ['-created_at']  
+        ordering = ['name']
 
     def __str__(self):
         return f'- name: {self.name}\n - description: {self.description}\n - expiration_date: {self.expiration_date}\n - price: {self.price}\n - stock: {self.stock}\n - promotion: {self.promotion}'

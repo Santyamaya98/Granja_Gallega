@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block head_extra %}
-<link rel="stylesheet" href="{% static 'Suppliers/css/supplier_form.css' %}">
 {% endblock %}
 
 {% block header %}
@@ -31,7 +30,7 @@
 
 <div class="info-box">
     <form method="post" class="supplier-form" action="{% url 'supplier_create' %}">
-        
+        <div class="action-box">
         {% csrf_token %}
         
         <h3 class="section-title">Información Personal</h3>
@@ -111,10 +110,11 @@
             <p class="error">{{ form.production_activity.errors.0 }}</p>
         {% endif %}
         <br><br>
-
+        </div>
         <div class="form-actions">
             <button type="submit" class="btn-primary">Añadir Proveedor</button>
             <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancelar</a>
+            
         </div>
     </form>
 </div>

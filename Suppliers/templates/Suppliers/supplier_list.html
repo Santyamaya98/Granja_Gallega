@@ -1,19 +1,15 @@
+{% extends 'Suppliers/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suppliers List</title>
-  <link rel="stylesheet" href="{% static 'Suppliers/css/suppliers_list.css' %}">
-</head>
-<body>
 
-  <header>
-    <h1>All Suppliers</h1>
-    <p>Manage and view all registered suppliers</p>
-  </header>
 
+{% block head_extra %}
+{% endblock %}
+
+{% block header %}
+<h1>Lista de suppliers - {{ supplier.full_name }}</h1>
+<p>Aquí puedes ver todos los proveedores.</p>
+{% endblock %}
+{% block content %} 
   <nav>
     <a href="{% url 'suppliers' %}">Suppliers home</a>
     <a href="{% url 'supplier_create' %}">Add New</a>
@@ -38,8 +34,8 @@
       </div>
       
       {% if suppliers %}
-        <div class="table-container">
-          <table class="suppliers-table">
+        <div class="info-box">
+          <table class="table-custom">
             <thead>
               <tr>
                 <th>Name</th>
@@ -59,9 +55,9 @@
                 <td>{{ supplier.phone|default:"-" }}</td>
                 <td>{{ supplier.location|default:"-" }}</td>
                 <td class="actions">
-                  <a href="{% url 'supplier_detail' supplier.pk %}" class="btn btn-view">View</a>
-                  <a href="{% url 'supplier_edit' supplier.pk %}" class="btn btn-edit">Edit</a>
-                  <a href="{% url 'supplier_delete' supplier.pk %}" class="btn btn-delete">Delete</a>
+                  <a href="{% url 'supplier_detail' supplier.pk %}" class="btn">View</a>
+                  <a href="{% url 'supplier_edit' supplier.pk %}" class="btn">Edit</a>
+                  <a href="{% url 'supplier_delete' supplier.pk %}" class="btn">Delete</a>
                 </td>
               </tr>
               {% endfor %}
@@ -78,13 +74,5 @@
     </div>
 
   </div>
+{% endblock %}
 
-  <footer>
-    <p>&copy; 2025 Suppliers Network. All rights reserved.</p>
-    <a href="#">Privacy Policy</a> | 
-    <a href="#">Legal Notice</a> | 
-    <a href="#">Terms & Conditions</a>
-  </footer>
-
-</body>
-</html>

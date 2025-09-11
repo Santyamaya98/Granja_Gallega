@@ -60,6 +60,14 @@ nav a:hover {
   color: #000000;
 }
 
+.section-title{
+  color: rgb(255, 255, 255);
+  background: rgb(27, 67, 155); /* black space for hyperlink */
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
 .action-boxes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -75,6 +83,7 @@ nav a:hover {
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.3s;
+  text-align: left;
 }
 
 .action-box:hover {
@@ -147,4 +156,36 @@ footer a:hover {
 
 .table-custom tr:hover {
     background-color: #ddd; /* Optional: Highlight row on hover */
+}
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  background: #92aefb;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-right: 5px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.supplier-link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background: rgb(27, 67, 155);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+
+.supplier-link:hover {
+  background: #01268c;
+}
+form
+
+input
+.form-actions {
+  margin-top: 2rem;
+  text-align: center;
 }

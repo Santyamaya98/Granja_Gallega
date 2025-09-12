@@ -7,10 +7,9 @@
 {% endblock %}
 
 {% block nav %} 
-    <a href="#">Home</a>
-    <a href="{% url 'Login' %}">Sign In</a>
-    <a href="{% url 'suppliers_signup' %}">Sign Up</a>
-    <a href="#">Contact</a>
+    <a href="{% url 'Login' %} " class="supplier-link">Sign In</a>
+    <a href="{% url 'suppliers_signup' %}" class="supplier-link">Sign Up</a>
+    <a href="#" class="supplier-link">Contact </a>
 {% endblock %}
 
 {% block content %}

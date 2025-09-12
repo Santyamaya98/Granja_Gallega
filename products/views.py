@@ -30,3 +30,4 @@ def products_list_view(request, pk):
     supplier = get_object_or_404(SuppliersModel, pk=pk)
     products = SuppliersProductsModel.objects.filter(supplier=supplier)
     return render(request, 'products/products_list.html', {'products': products, 'supplier': supplier})
+

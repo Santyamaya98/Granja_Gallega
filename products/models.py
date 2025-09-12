@@ -19,6 +19,9 @@ class SuppliersProductsModel(models.Model):
         verbose_name_plural = "Supplier Products"
         ordering = ['name']
 
+    def get_id(self):
+        return {'id':int(self.id)}
+
     def __str__(self):
-        return f'- name: {self.name}\n - description: {self.description}\n - expiration_date: {self.expiration_date}\n - price: {self.price}\n - stock: {self.stock}\n - promotion: {self.promotion}'
+        return f'- name: {self.name}\n - description: {self.description}\n- expiration_date: {self.expiration_date}\n - price: {self.price}\n - stock: {self.stock}\n - promotion: {self.promotion}'
     

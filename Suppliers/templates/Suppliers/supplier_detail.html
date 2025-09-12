@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block nav %}
-<a href="{% url 'products_list' pk=supplier.pk %}">List of products</a> 
+<a href="{% url 'products_list' pk=supplier.pk %}" class="supplier-link">List of products</a> 
 <!-- <a href="{% url 'supplier_list' %}">Back to List</a> 
 <a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
 <a href="{% url 'supplier_delete' supplier.pk %}">Delete</a>

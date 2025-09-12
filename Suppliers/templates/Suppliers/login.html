@@ -3,12 +3,12 @@
 {% load static %}
 {% block title %}Supplier Login{% endblock %}
 {% block header %}
-
     <h1>Supplier Login</h1>
     <p>Access your supplier account</p>
-    <a href="{% url 'suppliers' %}" class="supplier-link">Suppliers home</a>
 {% endblock %}
-
+{% block nav %}
+  <a href="{% url 'suppliers' %}" class="supplier-link">Suppliers home</a>
+{% endblock %}
 {% block content %}
 <div class="action-box" >
   <h2>{{ title }}</h2>

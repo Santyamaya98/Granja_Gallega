@@ -6,6 +6,7 @@
 <td class="actions">
 <a href="{% url 'addproducts' pk=supplier.pk %}" class="supplier-link">Añadir Producto</a>
 <a href="#" class="supplier-link">Promociones</a>
+<a href=" {% url 'supplier_detail' pk=supplier.pk %} " class="supplier-link">Inicio</a>
 </td>
 {% endblock %}
 

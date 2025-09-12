@@ -75,19 +75,25 @@ nav a:hover {
 }
 
 .action-box {
-  margin: 1rem;
-  box-sizing: border-box;
-  background: #007bff;
-  text-align: center;
-  padding: 1rem 1rem;
+  width: 100%; /* reduced width */
+  height: 100%; /* reduced height */
+  padding: 2px; /* slightly smaller padding */
+  color: white;
+  background: linear-gradient(#007bff, #0062cc) padding-box,
+              linear-gradient(145deg, transparent 35%, #40c9ff, #1e90ff) border-box;
+  border: 2px solid transparent;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-  text-align: left;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: right bottom;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .action-box:hover {
   transform: translateY(-5px);
+
 }
 
 .action-box a {
@@ -103,6 +109,14 @@ nav a:hover {
 
 .action-box a:hover {
   background: #01268c;
+}
+
+.action-box label {
+  margin-bottom: 2.5rem; /* slightly reduced spacing */
+  color: white;
+  text-align: center;
+  margin: 2rem;
+
 }
 
 footer {
@@ -182,10 +196,44 @@ footer a:hover {
 .supplier-link:hover {
   background: #01268c;
 }
-form
 
-input
 .form-actions {
   margin-top: 2rem;
   text-align: center;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box; /* Makes sure padding is included in width */
+  resize: vertical; /* Prevents horizontal resize */
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ffffff;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+
+input {
+  border: none;
+  margin: 1px;  
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ffffff;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+select {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: #ffffff;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;  
+  margin-top: auto;
 }

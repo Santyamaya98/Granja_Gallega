@@ -20,13 +20,6 @@
 {% endblock %}
 
 {% block content %}
-{% if messages %}
-    {% for message in messages %}
-        <div class="info-box message {{ message.tags }}">
-            <p>{{ message }}</p>
-        </div>
-    {% endfor %}
-{% endif %}
 
 <div class="info-box">
     <form method="post" class="supplier-form" action="{% url 'supplier_create' %}">
@@ -112,8 +105,8 @@
         <br><br>
         </div>
         <div class="form-actions">
-            <button type="submit" class="btn-primary">Añadir Proveedor</button>
-            <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancelar</a>
+            <button type="submit" class="btn">Añadir Proveedor</button>
+            <a href="{% url 'supplier_list' %}" class="btn">Cancelar</a>
             
         </div>
     </form>

@@ -4,9 +4,9 @@
 {% block title %} Lista de Productos - {{ supplier.name }} {% endblock %}
 {% block nav %}
 <td class="actions">
-<a href="{% url 'addproducts' pk=supplier.pk %}" class="supplier-link">Añadir Producto</a>
+<a href="{% url 'addproducts' supplier_pk=supplier.pk %}" class="supplier-link">Añadir Producto</a>
 <a href="#" class="supplier-link">Promociones</a>
-<a href=" {% url 'supplier_detail' pk=supplier.pk %} " class="supplier-link">Inicio</a>
+<a href=" {% url 'supplier_detail' supplier_pk=supplier.pk %} " class="supplier-link">Inicio</a>
 </td>
 {% endblock %}
 
@@ -39,8 +39,9 @@
             <td><p1>{{ product.stock }}</p1></td>
             <td>
                     <div class="btn">
-                        <a href="#">Editar</a>
+                        <a href="{% url 'editproduct' supplier_pk=supplier.pk product_pk=product.pk%}">Editar</a>
                         <a href="#">Eliminar</a>
+                        <a href="{% url 'promos' supplier_pk=supplier.pk product_pk=product.pk%}" class="supplier-link">Promo</a>
                     </div>
                 
             </td>

@@ -25,7 +25,7 @@ urlpatterns = [
     path('create/', views.supplier_create, name='supplier_create'),
     path('login/', views.Suppliers_Login_View, name='Login'),
     path('logout/', views.Suppliers_Logout_View, name='Logout'),
-    path('<uuid:pk>/', views.supplier_detail, name='supplier_detail'),
-    path('<uuid:pk>/edit/', views.supplier_edit, name='supplier_edit'),
-    path('<uuid:pk>/delete/', views.supplier_delete, name='supplier_delete'),
+    path('<uuid:supplier_pk>/', views.supplier_detail, name='supplier_detail'),
+    path('<uuid:supplier_pk>/edit/', views.supplier_edit, name='supplier_edit'),
+    path('<uuid:supplier_pk>/delete/', views.supplier_delete, name='supplier_delete'),
 ]

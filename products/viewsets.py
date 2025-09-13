@@ -28,7 +28,8 @@ class ProductsViewSet(viewsets.ModelViewSet):
             
             serializer = ProductsSerializer(products, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
-            serializer.save()   
+            serializer.save() 
+            return Response({'detail': 'Products list'}, status=status.HTTP_200_OK)  
 
         if request.method == 'PUT':
             try:
@@ -41,5 +42,5 @@ class ProductsViewSet(viewsets.ModelViewSet):
             serializer = ProductsSerializer(product, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()   
-        return Response(serializer.data)
+            return Response(serializer.data, {'detail': 'product updated'}, status=status.HTTP_201_CREATED)
     

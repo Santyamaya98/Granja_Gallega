@@ -20,17 +20,9 @@
 {% endblock %}
 
 {% block content %}
-{% if messages %}
-    {% for message in messages %}
-        <div class="info-box message {{ message.tags }}">
-            <p>{{ message }}</p>
-        </div>
-    {% endfor %}
-{% endif %}
-
 <div class="info-box">
     <!-- FIXED: Dynamic form action based on whether we're creating or editing -->
-    <form method="post" class="supplier-form" action="{% url 'supplier_edit' pk=form.instance.pk %}">
+    <form method="post" class="supplier-form" action="{% url 'supplier_edit' supplier_pk=form.instance.pk %}">
         {% csrf_token %}
             
         <h3 class="section-title">Personal Information</h3>
@@ -115,7 +107,7 @@
             <button type="submit" class="btn-primary">
                 {% if form.instance.pk %}Update Supplier{% else %}Add Supplier{% endif %}
             </button>
-            <a href="{% url 'supplier_list' %}" class="btn-secondary">Cancel</a>
+            <a href="{% url 'supplier_list' %}" class="btn">Cancel</a>
         </div>
      </form>    
 </div>

@@ -43,5 +43,5 @@ urlpatterns = [
     
     # Web endpoints (if needed)
     path('suppliers/', include('Suppliers.urls')),
-    path('suppliers/<uuid:pk>/products/', include('products.urls')),
+    path('suppliers/<uuid:supplier_pk>/products/', include('products.urls')),
 ]

@@ -1,0 +1,70 @@
+{% extends "Suppliers/base.html" %}
+
+
+{% block title %}
+{{ product.name }} - Promotion
+{% endblock %}
+
+{% block header %}
+<h1>{{ title}}</h1>
+{% endblock %}
+
+{%block nav%}
+<a href="{% url 'products_list' supplier_pk=supplier.pk %}" class="supplier-link">List of products</a> 
+{%endblock%}
+
+
+{% block content %} 
+<div class="info-box">      
+    <div class"action-boxes">
+    <form method="post" class="product-form" action="{% url 'promos' supplier_pk=supplier.pk product_pk=product.pk %}">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="error">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+    {{form.description.label_tag}}
+    {{form.description}}
+    {% if form.description.errors %}
+        <p class="error">{{ form.description.errors.0 }}</p>
+    {% endif %}
+
+    <br><br>
+
+    {{form.start_promo_date.label_tag}}
+    {{form.start_promo_date}}
+    {% if form.start_promo_date.errors %}
+        <p class="error">{{ form.start_promo_date.errors.0 }}</p>
+    {% endif %}    
+
+    {{form.end_promo_date.label_tag}}
+    {{form.end_promo_date}}
+    {% if form.end_promo_date.errors %}
+        <p class="error">{{ form.end_promo_date.errors.0 }}</p>
+    {% endif %}
+
+    <br><br>
+
+    {{form.price.label_tag}}
+    {{form.price}}
+    {% if form.price.errors %}
+        <p class="error">{{ form.price.errors.0 }}</p>
+    {% endif %}
+    {{form.confirm_price.label_tag}}
+    {{form.confirm_price}}
+    {% if form.confirm_price.errors %}
+        <p class="error">{{ form.confirm_price.errors.0 }}</p>
+    {% endif %}
+    {{form.stock.label_tag}}
+    {{form.stock}}
+    {% if form.stock.errors %}
+        <p class="error">{{ form.stock.errors.0 }}</p>
+    {% endif %}
+        </div>
+    </div>
+        <button type="submit" class="btn">Guardar Promo</button>
+</div>
+</form>    
+
+{% endblock %}

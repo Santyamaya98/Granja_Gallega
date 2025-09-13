@@ -16,5 +16,14 @@ class ProductsSerializer(serializers.ModelSerializer):
                   'stock'
                   ]
         
+class ProdcutsPromoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SuppliersProductsModel
+        fields = ['description',
+                'start_promo_date',
+                'end_promo_date',
+                'price',
+                'stock',   
+                ]
 
         

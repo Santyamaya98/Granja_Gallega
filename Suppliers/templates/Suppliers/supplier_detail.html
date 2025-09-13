@@ -9,19 +9,10 @@
 <h1>{{ supplier.full_name }}</h1>
 <p>Supplier Details & Information</p>
 
-{# Display any messages (success/error) to the user #}
-{% if messages %}
-    <div class="messages">
-        {% for message in messages %}
-            <div class="message {{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-{% endif %}
-
 {% endblock %}
 
 {% block nav %}
-<a href="{% url 'products_list' pk=supplier.pk %}" class="supplier-link">List of products</a> 
+<a href="{% url 'products_list' supplier_pk=supplier.pk %}" class="supplier-link">List of products</a> 
 <!-- <a href="{% url 'supplier_list' %}">Back to List</a> 
 <a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
 <a href="{% url 'supplier_delete' supplier.pk %}">Delete</a>
@@ -66,7 +57,7 @@
 <div class="action-boxes">
     <div class="action-box">
         <h3>Añadir productos</h3>
-<a href="{% url 'addproducts' pk=supplier.pk %}">Add a New Product</a>
+<a href="{% url 'addproducts' supplier_pk=supplier.pk %}">Add a New Product</a>
     </div>
     <div class="action-box">
         <h3>Actualizar Productos</h3>
@@ -74,7 +65,7 @@
     </div>
     <div class="action-box">
         <h3>Montar promociones</h3>
-        <a href="#">Promotions</a>
+       <a href="#">Promotions</a><!-- supplier_pk=supplier.pk product_pk=product.pk TODO -->
     </div>
 </div>
 {% endblock %}

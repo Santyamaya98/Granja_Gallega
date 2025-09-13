@@ -19,9 +19,9 @@ def Suppliers_List(request):
     suppliers = SuppliersModel.objects.all()
     return render(request, "Suppliers/supplier_list.html", {'suppliers': suppliers})
 
-def supplier_detail(request, pk):
+def supplier_detail(request, supplier_pk):
     """View supplier details"""
-    supplier = get_object_or_404(SuppliersModel, pk=pk)
+    supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
     return render(request, 'suppliers/supplier_detail.html', {'supplier': supplier})
 
 def supplier_create(request):
@@ -36,22 +36,22 @@ def supplier_create(request):
         form = SuppliersForm()
     return render(request, 'suppliers/supplier_create.html', {'form': form, 'title': 'Crear Proveedor'})
 
-def supplier_edit(request, pk):
+def supplier_edit(request, supplier_pk):
     """Edit supplier"""
-    supplier = get_object_or_404(SuppliersModel, pk=pk)
+    supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
     if request.method == 'POST':
         form = SuppliersForm(request.POST, instance=supplier)
         if form.is_valid():
             form.save()
             messages.success(request, 'Proveedor actualizado exitosamente!')
-            return redirect('supplier_detail', pk=supplier.pk)
+            return redirect('supplier_detail', pk=supplier_pk)
     else:
         form = SuppliersForm(instance=supplier)
     return render(request, 'suppliers/supplier_edit.html', {'form': form, 'title': 'Editar Proveedor'})
 
-def supplier_delete(request, pk):
+def supplier_delete(request, supplier_pk):
     """Delete supplier"""
-    supplier = get_object_or_404(SuppliersModel, pk=pk)
+    supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
     if request.method == 'POST':
         supplier.delete()
         messages.success(request, 'Proveedor eliminado exitosamente!')
@@ -65,7 +65,7 @@ def Suppliers_Sign_Up_View(request):
             token_id = form.cleaned_data['token_id']
 
             # 1. Validate supplier by token (uuid)
-            supplier = get_object_or_404(SuppliersModel, pk=token_id, approved=True)
+            supplier = get_object_or_404(SuppliersModel, supplier_pk=token_id, approved=True)
 
             if supplier.user:
                 messages.error(request, "Este proveedor ya tiene una cuenta de usuario.")
@@ -116,7 +116,7 @@ def Suppliers_Login_View(request):
                 try:
                     # Access the related supplier object from the user
                     supplier = SuppliersModel.objects.get(user=user)
-                    return redirect('supplier_detail', pk=supplier.pk)
+                    return redirect('supplier_detail', supplier_pk=supplier.pk)
                 except SuppliersModel.DoesNotExist:
                     # Handle the case where a User has no related SupplierModel
                     messages.error(request, "Error: Cuenta de proveedor no encontrada.")

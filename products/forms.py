@@ -38,3 +38,37 @@ class SuppliersProductsForm(forms.ModelForm):
             'price': "Price",
             'stock': "Stock Quantity",
         }
+
+class ProductPromotionForm(forms.ModelForm):
+    start_promo_date = forms.DateField(widget=forms.SelectDateWidget, label="start_promo_date")
+    end_promo_date = forms.DateField(widget=forms.SelectDateWidget, label="end_promo_date")
+    stock =  forms.IntegerField(label="Stock Quantity")
+    price = forms.DecimalField(max_digits=10, decimal_places=2, label="Price")
+    confirm_price = forms.DecimalField(label="Confirmar Precio", max_digits=10, decimal_places=2)
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        price = cleaned_data.get('price')
+        confirm_price = cleaned_data.get('confirm_price')
+        if price != confirm_price:
+            raise ValidationError("El precio no coincide.")
+        return cleaned_data
+
+    class Meta:
+        model = SuppliersProductsModel
+        # List model fields explicitly (exclude confirm_price!)
+        fields = [
+            'description',
+            'start_promo_date',
+            'end_promo_date',
+            'price',
+            'stock',
+        ]
+        labels = {
+            'description': 'Promo description',
+            'start_promo_date': 'promo starts in',
+            'end_promo_date':'promo ends in',
+            'price': 'the price of this promotion is',
+            'stock':'What is the quantity for this promotion',
+            'confirm_price': 'confirm amount'
+        }

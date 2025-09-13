@@ -18,16 +18,6 @@
   </nav>
 
   <div class="container">
-    
-    <!-- Messages -->
-    {% if messages %}
-      {% for message in messages %} 
-        <div class="info-box {{ message.tags }}">
-          <p>{{ message }}</p>
-        </div>
-      {% endfor %}
-    {% endif %}
-
     <div class="info-box">
       <div class="header-actions">
         <h2>Registered Suppliers ({{ suppliers.count }})</h2>

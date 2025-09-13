@@ -1,33 +1,25 @@
 {% extends 'Suppliers/base.html' %}
 {% load static %}
 
-{% block title %}
-Añadir producto - Products
-{% endblock %}
-
+{% block title %} Editor de Productos - {{ product.description }} {% endblock %}
 {% block nav %}
-<a href="{% url 'products_list' supplier_pk=supplier.pk %}" class="supplier-link">Lista de productos</a>
+<td class="actions">
+<a href="{% url 'addproducts' supplier_pk=supplier.pk %}" class="supplier-link">Añadir Producto</a>
+<a href="{% url 'promos' supplier_pk=supplier.pk product_pk=product.pk %} " class="supplier-link">Promociones</a>
+<a href=" {% url 'supplier_detail' supplier_pk=supplier.pk %} " class="supplier-link">Inicio</a>
+</td>
 {% endblock %}
 
 {% block header %}
-<h1>{{ title|default:"Descripción del Producto" }}</h1>
-<p>Añadir nuevo producto a tu estante virtual</p>
+<h1>{{ title|default:"Product information" }}</h1>
+<p>{% if form.instance.pk %}Update product information{% else %}Add new product{% endif %}</p>
 {% endblock %}
 
-
-{% block content %}
-
-<div class="info-box">
-    <form method="post" class="product-form" action="{% url 'addproducts' supplier_pk=supplier.pk %}">
-        {% csrf_token %}
-        {% if form.non_field_errors %}
-            <div class="error">
-                {{ form.non_field_errors }}
-            </div>
-        {% endif %}
-
+{% block content %} 
     <div class="action-boxes">
         <div class="action-box">
+            <form method="post" class="product-form" action="{% url 'editproduct' supplier_pk=supplier.pk product_pk=product.pk %}">
+        {% csrf_token %}
         {{ form.name.label_tag }}
         {{ form.name }}
         {% if form.name.errors %}
@@ -79,20 +71,11 @@ Añadir producto - Products
                 <p class="error">{{ form.promotion.errors.0 }}</p>
             {% endif %}
         {% endif %}
-    </div>
-        </div>
-
-        <br><br>
         
-        <button type="submit" class="btn">Guardar Producto</button>
-    </form>
-</div>
-{% endblock %}
-
-{% block footer %}
-<p>&copy; 2025 Products Network. All rights reserved.</p>
-<a href="#">Privacy Policy</a> | 
-<a href="#">Legal Notice</a> | 
-<a href="#">Terms of Service</a>
-{% endblock %}
-  
+                
+            </div>
+        </div>
+        <br><br>
+    <button type="submit" class="btn">Guardar Cambios Producto</button>
+</form>    
+{% endblock %}  

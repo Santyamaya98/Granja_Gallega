@@ -28,8 +28,6 @@ Añadir producto - Products
     {% endif %}
     <form method="post" class="product-form" action="{% url 'addproducts' pk=supplier.pk %}">
         {% csrf_token %}
-        <input type="hidden" name="supplier_id" value="{{ supplier.id }}">
-
         {% if form.non_field_errors %}
             <div class="error">
                 {{ form.non_field_errors }}

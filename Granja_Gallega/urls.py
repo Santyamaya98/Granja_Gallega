@@ -14,16 +14,34 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+#app/urls.py
+# urls.py
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_nested import routers
+
+# Import your viewsets
+from Suppliers.viewsets import SuppliersViewSet
+from products.viewsets import ProductsViewSet
+
+# Main router for top-level resources
+router = routers.DefaultRouter()
+router.register(r'suppliers', SuppliersViewSet, basename='suppliers')
+
+# Nested router for the 'products' resource under 'suppliers'
+suppliers_router = routers.NestedSimpleRouter(router, r'suppliers', lookup='supplier')
+suppliers_router.register(r'products', ProductsViewSet, basename='supplier-products')
 
 urlpatterns = [
+    # Admin and authentication URLs
     path('admin/', admin.site.urls),
-    # api end pointrs
     path('api-auth/', include('rest_framework.urls')),
-    path('api/suppliers/', include('Suppliers.api_urls')),
-    path('api/suppliers/<uuid:pk>/products/', include('products.api_urls')),
-    # web end points
+    
+    # API endpoints handled by the routers
+    path('api/', include(router.urls)),
+    path('api/', include(suppliers_router.urls)),
+    
+    # Web endpoints (if needed)
     path('suppliers/', include('Suppliers.urls')),
     path('suppliers/<uuid:pk>/products/', include('products.urls')),
 ]

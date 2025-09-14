@@ -14,7 +14,7 @@ def products_add_view(request, supplier_pk):
             product.supplier = supplier  # Make sure product is linked to supplier!
             product.save()
             messages.success(request, 'Producto añadido exitosamente!')
-            return redirect('supplier_detail', pk=supplier_pk)
+            return redirect('supplier_detail',supplier_pk=supplier_pk)
         else:
             messages.error(request, 'Error al añadir el producto. Revisa los datos.')
             print(form.errors) # This is key! It shows general form errors
@@ -55,11 +55,14 @@ def products_promo_view(request, supplier_pk, product_pk):
     if request.method == 'POST':
         if product.promotion == False:
             messages.error(request, 'Producto no está en promoción')
-            return redirect('product_edit', supplier_pk=supplier_pk, product_pk=product_pk)
+            return redirect('editproduct', supplier_pk=supplier_pk, product_pk=product_pk)
         
-        form = ProductPromotionForm(request.POST, instance=product)
+        form = ProductPromotionForm(request.POST)
+        
         if form.is_valid():
-            form.save()
+            new_promo = form.save(commit=False)
+            new_promo.product = product # This is the crucial line
+            new_promo.save()
             messages.success(request, 'Promo realizada exitosamente')
             return redirect('products_list', supplier_pk=supplier_pk)
     else:

@@ -1,5 +1,5 @@
 from django import forms
-from .models import SuppliersProductsModel
+from .models import SuppliersProductsModel, PromosModel
 from django.core.exceptions import ValidationError
 
 class SuppliersProductsForm(forms.ModelForm):
@@ -40,6 +40,7 @@ class SuppliersProductsForm(forms.ModelForm):
         }
 
 class ProductPromotionForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea, label="Product Description")
     start_promo_date = forms.DateField(widget=forms.SelectDateWidget, label="start_promo_date")
     end_promo_date = forms.DateField(widget=forms.SelectDateWidget, label="end_promo_date")
     stock =  forms.IntegerField(label="Stock Quantity")
@@ -55,7 +56,7 @@ class ProductPromotionForm(forms.ModelForm):
         return cleaned_data
 
     class Meta:
-        model = SuppliersProductsModel
+        model = PromosModel
         # List model fields explicitly (exclude confirm_price!)
         fields = [
             'description',

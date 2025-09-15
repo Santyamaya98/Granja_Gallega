@@ -1,12 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import SuppliersModel
-from .forms import SuppliersForm, SuppliersSignupForm, SupplierLoginForm
 # from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout, login 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+
+from .models import SuppliersModel
+from .forms import SuppliersForm, SuppliersSignupForm, SupplierLoginForm
+# Reusable decorator: only superusers allowed
+admin_required = user_passes_test(
+    lambda u: u.is_authenticated and u.is_superuser,
+    login_url='Login',          # redirect if not admin
+   # if True, raise 403 instead of redirecting
+)
+
 
 # Create your views here.
 def Suppliers_View(request):
@@ -14,6 +23,7 @@ def Suppliers_View(request):
     suppliers = SuppliersModel.objects.all()
     return render(request, "Suppliers/suppliers.html", {'suppliers': suppliers})
 
+@admin_required
 def Suppliers_List(request):
     """Display all suppliers"""
     suppliers = SuppliersModel.objects.all()
@@ -24,6 +34,7 @@ def supplier_detail(request, supplier_pk):
     supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
     return render(request, 'suppliers/supplier_detail.html', {'supplier': supplier})
 
+@admin_required
 def supplier_create(request):
     """Create new supplier"""
     if request.method == 'POST':
@@ -36,6 +47,7 @@ def supplier_create(request):
         form = SuppliersForm()
     return render(request, 'suppliers/supplier_create.html', {'form': form, 'title': 'Crear Proveedor'})
 
+@admin_required
 def supplier_edit(request, supplier_pk):
     """Edit supplier"""
     supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
@@ -49,6 +61,7 @@ def supplier_edit(request, supplier_pk):
         form = SuppliersForm(instance=supplier)
     return render(request, 'suppliers/supplier_edit.html', {'form': form, 'title': 'Editar Proveedor'})
 
+@admin_required
 def supplier_delete(request, supplier_pk):
     """Delete supplier"""
     supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
@@ -133,8 +146,8 @@ def Suppliers_Login_View(request):
         'form': form,
         'title': "Suppliers Users Login"
     })
+
 def Suppliers_Logout_View(request):
-    
     logout(request)
     messages.success(request, "Has cerrado sesión exitosamente.")
     return redirect('Login')  # Redirect to a success page.

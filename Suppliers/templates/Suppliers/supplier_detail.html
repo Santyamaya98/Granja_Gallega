@@ -13,8 +13,8 @@
 
 {% block nav %}
 <a href="{% url 'products_list' supplier_pk=supplier.pk %}" class="supplier-link">List of products</a> 
-<!-- <a href="{% url 'supplier_list' %}">Back to List</a> 
-<a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
+<a href="{% url 'promo_list' supplier_pk=supplier.pk %}">List of promotions</a> 
+<!-- <a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
 <a href="{% url 'supplier_delete' supplier.pk %}">Delete</a>
 <a href="{% url 'supplier_create' %}">Add New</a> 
  This must be accesible just for admin users --> 

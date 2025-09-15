@@ -1,11 +1,9 @@
 {% extends 'Suppliers/base.html' %}
 {% load static %}
 
-{% block title %} Lista de Productos - {{ supplier.name }} {% endblock %}
+{% block title %} Lista de Promos - {{ supplier.name }} {% endblock %}
 {% block nav %}
 <td class="actions">
-<a href="{% url 'addproducts' supplier_pk=supplier.pk %}" class="supplier-link">Añadir Producto</a>
-<a href="{% url 'promo_list' supplier_pk=supplier.pk %}" class="supplier-link">Promociones</a>
 <a href=" {% url 'supplier_detail' supplier_pk=supplier.pk %} " class="supplier-link">Inicio</a>
 </td>
 {% endblock %}
@@ -17,7 +15,7 @@
 {% block content %} 
 
     <div class="info-box">
-    <h2>Productos de {{ supplier.full_name }} ({{ products.count }})</h2>   
+    <h2>Productos de {{ supplier.full_name }} ({{ promos.count }})</h2>   
 <table class="table-custom">    
     <thead>
         <tr>
@@ -30,25 +28,23 @@
         </tr>
     </thead>
     <tbody>
-        {% for product in products %}
+        {% for promo in promotions %}
         <tr>
-            <td><p1>{{ product.name }}</p1></td>
-            <td><p1>{{ product.description }}</p></td>
-            <td><p1>{{ product.price }}</p1></td>
-            <td><p1>{{ product.expiration_date }}</p></td>
-            <td><p1>{{ product.stock }}</p1></td>
+            <td><p1>{{ promo.name }}</p1></td>
+            <td><p1>{{ promo.description }}</p></td>
+            <td><p1>{{ promo.price }}</p1></td>
+            <td><p1>{{ promo.expiration_date }}</p></td>
+            <td><p1>{{ promo.stock }}</p1></td>
             <td>
                     <div class="btn">
-                        <a href="{% url 'editproduct' supplier_pk=supplier.pk product_pk=product.pk%}">Editar</a>
                         <a href="#">Eliminar</a>
-                        <a href="{% url 'promos' supplier_pk=supplier.pk product_pk=product.pk%}" class="supplier-link">Promo</a>
                     </div>
                 
             </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="6">No hay productos disponibles.</td>
+            <td colspan="6">No hay promociones disponibles.</td>
         </tr>
         {% endfor %}
     </tbody>

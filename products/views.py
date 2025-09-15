@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 # Create your views here.
 from .forms import ProductPromotionForm, ProductPromotionForm, SuppliersProductsForm
-from .models import SuppliersProductsModel
+from .models import SuppliersProductsModel, PromosModel
 from Suppliers.models import SuppliersModel
 
 def products_add_view(request, supplier_pk):
@@ -77,3 +77,21 @@ def products_promo_view(request, supplier_pk, product_pk):
                     })
 
         
+def promo_list_view(request, supplier_pk):
+    supplier = get_object_or_404(SuppliersModel, pk=supplier_pk)
+    
+    # Products of this supplier that are marked as promo
+    products = SuppliersProductsModel.objects.filter(supplier=supplier, promotion=True)
+    
+    # Get promos linked to those products
+    promos = PromosModel.objects.filter(product__in=products)
+    
+    return render(
+        request,
+        'products/products_promo.html',
+        {
+            'promotion': promos,
+            'supplier': supplier,
+            'products': products,  # plural, since it can be many
+        }
+    )

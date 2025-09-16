@@ -10,12 +10,12 @@
 
 {% block header %}
 <h1>Lista de Productos - {{ supplier.full_name }}</h1>
-<p>Aquí puedes ver todos los productos de este proveedor.</p>
+<p>Aquí puedes ver todas tus promociones.</p>
 {% endblock %}
 {% block content %} 
 
     <div class="info-box">
-    <h2>Productos de {{ supplier.full_name }} ({{ promos.count }})</h2>   
+    <h2>Productos de {{ supplier.full_name }} ({{ promotion.count }})</h2>   
 <table class="table-custom">    
     <thead>
         <tr>
@@ -28,12 +28,13 @@
         </tr>
     </thead>
     <tbody>
-        {% for promo in promotions %}
+        {% for promo in promotion %}
         <tr>
-            <td><p1>{{ promo.name }}</p1></td>
+            <td>{{ promo.product.name }}</td>
             <td><p1>{{ promo.description }}</p></td>
             <td><p1>{{ promo.price }}</p1></td>
-            <td><p1>{{ promo.expiration_date }}</p></td>
+            <td><p1>{{ promo.start_promo_date }}</p></td>
+            <td><p1>{{ promo.end_promo_date }}</p></td>
             <td><p1>{{ promo.stock }}</p1></td>
             <td>
                     <div class="btn">

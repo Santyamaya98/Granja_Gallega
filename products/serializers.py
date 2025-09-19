@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import SuppliersProductsModel
+from .models import SuppliersProductsModel, PromosModel
 
 class ProductsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,12 +18,13 @@ class ProductsSerializer(serializers.ModelSerializer):
         
 class ProdcutsPromoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SuppliersProductsModel
-        fields = ['description',
-                'start_promo_date',
-                'end_promo_date',
-                'price',
-                'stock',   
+        model = PromosModel
+        fields = [  'id',
+                    'description',
+                    'start_promo_date',
+                    'end_promo_date',
+                    'price',
+                    'stock',   
                 ]
 
         

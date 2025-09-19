@@ -8,12 +8,15 @@
 {% block header %}
 <h1>{{ supplier.full_name }}</h1>
 <p>Supplier Details & Information</p>
-
+<form mehtod="POST" action="{% url 'Logout' %}">
+      {% csrf_token %}
+<button class='btn-logout' type="submit">Logout</button>
+</form>
 {% endblock %}
 
 {% block nav %}
 <a href="{% url 'products_list' supplier_pk=supplier.pk %}" class="supplier-link">List of products</a> 
-<a href="{% url 'promo_list' supplier_pk=supplier.pk %}">List of promotions</a> 
+<a href="{% url 'promo_list' supplier_pk=supplier.pk %}" class="supplier-link">List of promotions</a> 
 <!-- <a href="{% url 'supplier_edit' supplier.pk %}">Edit Supplier</a>
 <a href="{% url 'supplier_delete' supplier.pk %}">Delete</a>
 <a href="{% url 'supplier_create' %}">Add New</a> 
@@ -61,11 +64,11 @@
     </div>
     <div class="action-box">
         <h3>Actualizar Productos</h3>
-        <a href="#">Update Productos</a>
+        <a href="{% url 'promo_list' supplier_pk=supplier.pk %}">Promo List</a>
     </div>
     <div class="action-box">
-        <h3>Montar promociones</h3>
-       <a href="#">Promotions</a><!-- supplier_pk=supplier.pk product_pk=product.pk TODO -->
+        <h3>Ver mis ventas</h3>
+       <a href="#">Indicadores</a><!-- supplier_pk=supplier.pk product_pk=product.pk TODO -->
     </div>
 </div>
 {% endblock %}

@@ -184,10 +184,21 @@ footer a:hover {
   display: inline-block;
 }
 
+button.btn-logout {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background: rgb(0, 123, 255); 
+  border: None;
+}
+
+button.btn-logout:hover{
+  background: #01268c;
+}
+
 .supplier-link {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background: rgb(27, 67, 155);
+  background: rgb(47, 113, 255); 
   border-radius: 8px;
 }
 

@@ -22,15 +22,17 @@ from rest_framework_nested import routers
 
 # Import your viewsets
 from Suppliers.viewsets import SuppliersViewSet
-from products.viewsets import ProductsViewSet
+from products.viewsets import ProductsViewSet, PromoViewSet
 
 # Main router for top-level resources
 router = routers.DefaultRouter()
 router.register(r'suppliers', SuppliersViewSet, basename='suppliers')
+router.register(r'products', ProductsViewSet, basename='products')
+router.register(r'promos', PromoViewSet, basename='promos')
 
 # Nested router for the 'products' resource under 'suppliers'
-suppliers_router = routers.NestedSimpleRouter(router, r'suppliers', lookup='supplier')
-suppliers_router.register(r'products', ProductsViewSet, basename='supplier-products')
+# suppliers_router = routers.NestedSimpleRouter(router, r'suppliers', lookup='supplier')
+# suppliers_router.register(r'products', ProductsViewSet, basename='supplier-products')
 
 urlpatterns = [
     # Admin and authentication URLs
@@ -39,7 +41,7 @@ urlpatterns = [
     
     # API endpoints handled by the routers
     path('api/', include(router.urls)),
-    path('api/', include(suppliers_router.urls)),
+    #path('api/', include(suppliers_router.urls)),
     
     # Web endpoints (if needed)
     path('suppliers/', include('Suppliers.urls')),

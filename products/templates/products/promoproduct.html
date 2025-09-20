@@ -24,6 +24,10 @@
             {{ form.non_field_errors }}
         </div>
         {% endif %}
+    <div class="action-box">
+    <p> Product Name: {{ product.name }}</p>
+    <p> Product Description: {{product.description }}</p>
+    </div>
     {{form.description.label_tag}}
     {{form.description}}
     {% if form.description.errors %}
@@ -63,7 +67,7 @@
     {% endif %}
         </div>
     </div>
-        <button type="submit" class="btn">Guardar Promo</button>
+    <button type="submit" class="btn-logout">Guardar Promo</button>
 </div>
 </form>    
 

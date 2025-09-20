@@ -38,6 +38,10 @@ class PromosModel(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return f'- promo_id: {self.id}\n - {self.product}'
+        return f'- promo_id: {self.id}\n - {self.product.name}'
+    @property
+    def product_name(self):
+        """Convenient way to get the product name in templates or admin."""
+        return self.product.name
 
     

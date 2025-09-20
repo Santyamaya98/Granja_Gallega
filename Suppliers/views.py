@@ -78,7 +78,7 @@ def Suppliers_Sign_Up_View(request):
             token_id = form.cleaned_data['token_id']
 
             # 1. Validate supplier by token (uuid)
-            supplier = get_object_or_404(SuppliersModel, supplier_pk=token_id, approved=True)
+            supplier = get_object_or_404(SuppliersModel, pk=token_id, approved=True)
 
             if supplier.user:
                 messages.error(request, "Este proveedor ya tiene una cuenta de usuario.")

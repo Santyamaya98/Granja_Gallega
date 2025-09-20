@@ -31,7 +31,7 @@ class SuppliersProductsForm(forms.ModelForm):
             'stock',
         ]
         labels = {
-            'name': "Product Name",
+            'name': 'product_name',
             'description': "Product Description",
             'expiration_date': "Expiration Date",
             'promotion': "Promotion",
@@ -39,7 +39,7 @@ class SuppliersProductsForm(forms.ModelForm):
             'stock': "Stock Quantity",
         }
 
-class ProductPromotionForm(forms.ModelForm):
+class ProductPromotionForm(forms.ModelForm): 
     description = forms.CharField(widget=forms.Textarea, label="Product Description")
     start_promo_date = forms.DateField(widget=forms.SelectDateWidget, label="start_promo_date")
     end_promo_date = forms.DateField(widget=forms.SelectDateWidget, label="end_promo_date")

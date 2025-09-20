@@ -65,8 +65,10 @@ def products_promo_view(request, supplier_pk, product_pk):
             new_promo.save()
             messages.success(request, 'Promo realizada exitosamente')
             return redirect('products_list', supplier_pk=supplier_pk)
+        else:
+            print(form.errors)
     else:
-        form = ProductPromotionForm(instance=product)
+        form = ProductPromotionForm()
     return render(request, 'products/promoproduct.html',
                    {
                        'form': form, 

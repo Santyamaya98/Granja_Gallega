@@ -1,0 +1,33 @@
+{% extends 'Suppliers/base.html' %}
+{% load static %}
+
+{% block title %}Supplier Sign Up{% endblock %}
+
+{% block header %}
+    <h1>Join Our Supplier Network</h1>
+    <p>Fill the form to become part of our team</p>
+{% endblock %}
+
+{% block nav %}
+    <a href="{% url 'suppliers' %}" class="supplier-link">Suppliers home</a>
+{% endblock %}
+
+{% block content %}
+    <div class="action-box">
+        <div class="form-actions">
+    <form method="post" action="{% url 'suppliers_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+            <button type="submit" class="btn">Sign Up</button>
+            <a href="{% url 'suppliers' %}" class="btn">Cancel</a>
+        </div>
+    </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <p>&copy; 2025 Suppliers Network. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms of Service</a>
+{% endblock %}

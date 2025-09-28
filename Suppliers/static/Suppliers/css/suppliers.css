@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background: #007bff;
+  background: linear-gradient(to bottom right, #01268c, #4b93e0) padding-box;
   color: white;
   text-align: center;
   padding: 2rem;
@@ -78,8 +78,8 @@ nav a:hover {
   height: 100%; /* reduced height */
   padding: 4px; /* slightly smaller padding */
   color: white;
-  background: linear-gradient(#007bff, #0062cc) padding-box,
-              linear-gradient(145deg, transparent 35%, #40c9ff, #1e90ff) border-box;
+  background: linear-gradient(to right bottom, #007bff, #4f44ed) padding-box,
+              linear-gradient(145deg, transparent 35%, #40c9ff, #381eff) border-box;
   border: 2px solid transparent;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -94,7 +94,7 @@ nav a:hover {
 .action-box:hover {
   transform: translateY(-5px);
 
-}
+}     
 
 .action-box a {
   display: inline;
@@ -187,7 +187,8 @@ footer a:hover {
 button.btn-logout {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background: rgb(0, 123, 255); 
+  padding: 22px 22px;
+  background: linear-gradient(to bottom right, #01268c, #4b93e0) padding-box;
   border: None;
 }
 
@@ -198,7 +199,7 @@ button.btn-logout:hover{
 .supplier-link {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background: rgb(47, 113, 255); 
+  background: linear-gradient(to bottom right, #007bff, #4f44ed) padding-box;
   border-radius: 8px;
 }
 

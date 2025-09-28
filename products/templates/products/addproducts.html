@@ -26,7 +26,7 @@ Añadir producto - Products
             </div>
         {% endif %}
 
-    <div class="action-boxes">
+
         <div class="action-box">
         {{ form.name.label_tag }}
         {{ form.name }}
@@ -80,13 +80,13 @@ Añadir producto - Products
             {% endif %}
         {% endif %}
     </div>
+     <button type="submit" class="btn-logout">Guardar Producto</button>
         </div>
 
         <br><br>
         
-        <button type="submit" class="btn">Guardar Producto</button>
+       
     </form>
-</div>
 {% endblock %}
 
 {% block footer %}

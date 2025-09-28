@@ -17,6 +17,7 @@ header, footer{
   text-align: center;
   padding: 2rem;
   text-decoration: None;
+  margin-top: 2rem;
 }
 
 header h1 {
@@ -33,12 +34,7 @@ nav {
 }
 
 nav a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  background: rgb(47, 113, 255); /* black space for hyperlink */
   padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  transition: 0.3s;
 }
 
 nav a:hover {
@@ -103,11 +99,6 @@ nav a:hover {
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
   margin: 4px;
 }
-
-.action-box:hover {
-  transform: translateY(-5px);
-
-}     
 
 .action-box a {
   display: inline;
@@ -188,12 +179,13 @@ button.btn-logout {
 }
 
 button.btn-logout:hover{
-  background: #01268c;
+  transform: translateY(-3px);
+  background: linear-gradient(to bottom right, #007bff, #4f44ed) padding-box;
+  transition: calc(1s);
 }
 
 .supplier-link {
   display: flex;
-  flex-shrink: 2;
   text-decoration: none;
   color: rgb(255, 255, 255);
   background: linear-gradient(to bottom right, #007bff, #4f44ed) padding-box;
@@ -203,7 +195,9 @@ button.btn-logout:hover{
 
 
 .supplier-link:hover {
-  background: #01268c;
+  background: linear-gradient(to bottom right, #c766ee, #3158d6) padding-box;
+  transform: translateY(-3px);
+  transition: calc(1s);
 }
 
 .form-actions {
@@ -245,4 +239,44 @@ select {
   box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
   transition: 300ms ease-in-out;  
   margin-top: auto;
+}
+
+a {
+  display: flex;
+  margin: 5px;
+  padding: 2px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
+.table-custom td, td {
+  /* Spacing */
+  padding: 0.9rem 1.5rem;
+  
+  /* Cell display and alignment (incorporating your required properties) */
+  display: table-cell; 
+  vertical-align: middle; /* Centers content vertically for a cleaner look */
+  unicode-bidi: isolate;
+  text-align: left;
+  /* Borders and Background */
+  background:  linear-gradient(to bottom right, #214dc5, #4b93e0) padding-box;
+  border:2px solid #ffffff; /* Subtle bottom border */
+  
+  /* Smooth interaction */
+  transition: background-color 0.2s ease;
+}
+
+th {
+  border-top-left-radius: 30px 30px;
+  border-top-right-radius: 30px 30px;
+  border-bottom-left-radius: 30px 30px;
+  border-bottom-right-radius: 30px 30px;
+  padding: 5px;
+  background: linear-gradient(to bottom right, #214dc5, #4b93e0) padding-box;
+}
+
+.t-btn {
+  margin: 5px;
+  padding: 5px;
 }

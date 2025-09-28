@@ -20,3 +20,4 @@ class SuppliersSerializer(serializers.ModelSerializer):
                 'location',
                 'production_activity',
                 ]  
+

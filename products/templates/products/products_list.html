@@ -38,12 +38,15 @@
             <td><p1>{{ product.expiration_date }}</p></td>
             <td><p1>{{ product.stock }}</p1></td>
             <td>
-                    <div class="btn">
-                        <a href="{% url 'editproduct' supplier_pk=supplier.pk product_pk=product.pk%}">Editar</a>
-                        <a href="#">Eliminar</a>
-                        <a href="{% url 'promos' supplier_pk=supplier.pk product_pk=product.pk%}" class="supplier-link">Promo</a>
-                    </div>
-                
+                <div class="t-btn">
+                <a class="supplier-link" href="{% url 'editproduct' supplier_pk=supplier.pk product_pk=product.pk%}">Editar</a>
+                </div>
+                <div class="t-btn">
+                <a class="supplier-link" href="#">Eliminar</a>
+                </div>
+                <div class="t-btn">
+                <a class="supplier-link" href="{% url 'promos' supplier_pk=supplier.pk product_pk=product.pk%}" class="supplier-link">Promo</a>
+                </div>
             </td>
         </tr>
         {% empty %}

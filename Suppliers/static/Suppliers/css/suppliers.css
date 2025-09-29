@@ -41,6 +41,23 @@ nav a:hover {
   background: #01268c;
 }
 
+a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  margin: 5px;
+  padding: 2px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+a:-webkit-any-link {
+  text-decoration-line: none;
+  color: #ffffff
+}
+
+
+
 .container {
   max-width: 1000px;
   padding: 0.5rem;
@@ -239,14 +256,6 @@ select {
   box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
   transition: 300ms ease-in-out;  
   margin-top: auto;
-}
-
-a {
-  display: flex;
-  margin: 5px;
-  padding: 2px;
-  flex-direction: column;
-  flex-wrap: wrap;
 }
 
 

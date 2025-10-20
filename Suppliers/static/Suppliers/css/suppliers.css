@@ -1,36 +1,115 @@
 /* suppliers.css */
+
+:root {
+  /* Colors - Primary Palette */
+  --color-primary-dark: #214dc5;
+  --color-primary-light: #4b93e0;
+  --color-primary-blue: #007bff;
+  --color-primary-purple: #4f44ed;
+  --color-accent-purple: #c766ee;
+  --color-accent-blue: #3158d6;
+  --color-dark-blue: #01268c;
+  --color-medium-blue: rgb(0, 48, 152);
+  --color-section-blue: rgb(27, 67, 155);
+  
+  /* Colors - Gradients */
+  --gradient-primary: linear-gradient(to bottom right, var(--color-primary-dark), var(--color-primary-light));
+  --gradient-action: linear-gradient(to right bottom, var(--color-primary-blue), var(--color-primary-purple));
+  --gradient-hover: linear-gradient(to bottom right, var(--color-accent-purple), var(--color-accent-blue));
+  --gradient-border: linear-gradient(145deg, transparent 35%, #40c9ff, #381eff);
+  --gradient-complex: linear-gradient(217deg, #0051ff, transparent 70.71%), 
+                      linear-gradient(127deg, #0975fd, transparent 70.71%), 
+                      linear-gradient(145deg, transparent 35%, #ffffff, #381eff);
+  
+  /* Colors - Neutral */
+  --color-white: #ffffff;
+  --color-off-white: #fdfdfd;
+  --color-bg-light: #f6f6f6;
+  --color-bg-gray: #f4f4f4;
+  --color-bg-alt: #f2f2f2;
+  --color-border: #ddd;
+  
+  /* Shadows */
+  --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --shadow-inset: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+  
+  /* Spacing - Pixels */
+  --spacing-1: 1px;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+  --radius-3xl: 15px;
+  --radius-round: 30px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s;
+  --transition-slow: 1s;
+  --transition-smooth: 300ms ease-in-out;
+  --transition-bounce: 1s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* Typography */
+  --font-family: Arial, sans-serif;
+  --font-size-base: 1rem;
+  --font-size-sm: 0.85rem;
+  --font-size-xl: 2.5rem;
+  
+  /* Layout */
+  --container-max-width: 1000px;
+  --box-min-width: 200px;
+  --border-width: 2px;
+}
+
+/* Base Styles */
 body {
-  font-family: Arial, sans-serif;
-  background: #f6f6f6;
+  font-family: var(--font-family);
+  background: var(--color-bg-light);
   margin: 0;
   padding: 0;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
-header, footer{
-  width: 100%; /* reduced width */
+header, footer {
+  width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom right, #214dc5, #4b93e0) padding-box;
+  background: var(--gradient-primary) padding-box;
   color: white;
   text-align: center;
-  padding: 2rem;
-  text-decoration: None;
-  margin-top: 2rem;
+  padding: var(--spacing-lg);
+  text-decoration: none;
+  margin-top: var(--spacing-lg);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: var(--font-size-xl);
 }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background: #f4f4f4;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  background: var(--color-bg-gray);
 }
 
 nav a {
@@ -38,43 +117,39 @@ nav a {
 }
 
 nav a:hover {
-  background: #01268c;
+  background: var(--color-dark-blue);
 }
 
 a {
-  color: #ffffff;
+  color: var(--color-white);
   text-decoration: none;
   display: flex;
-  margin: 5px;
-  padding: 2px;
+  margin: var(--spacing-5);
+  padding: var(--spacing-2);
   flex-direction: column;
   flex-wrap: wrap;
 }
 
 a:-webkit-any-link {
   text-decoration-line: none;
-  color: #ffffff
+  color: var(--color-white);
 }
 
-
-
 .container {
-  max-width: 1000px;
-  padding: 0.5rem;
+  max-width: var(--container-max-width);
+  padding: var(--spacing-xs);
   margin: auto;
 }
 
 .info-box {
-  width: 100%; /* reduced width */
+  width: 100%;
   height: 100%;
-  background: linear-gradient(217deg, #0051ff, transparent 70.71%) padding-box, 
-              linear-gradient(127deg, #0975fd, transparent 70.71%) padding-box, 
-              linear-gradient(145deg, transparent 35%, #ffffff, #381eff) border-box;
-  margin: 2rem;
-  border: 2px solid transparent;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: var(--gradient-complex) border-box;
+  margin: var(--spacing-lg);
+  border: var(--border-width) solid transparent;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-light);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,210 +157,203 @@ a:-webkit-any-link {
 }
 
 .info-box h2 {
-  margin-top: 0.5rem;
-  color: #fdfdfd;
+  margin-top: var(--spacing-xs);
+  color: var(--color-off-white);
 }
 
-.section-title{
-  color: rgb(255, 255, 255);
-  background: rgb(27, 67, 155); /* black space for hyperlink */
+.section-title {
+  color: var(--color-white);
+  background: var(--color-section-blue);
   padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  transition: 0.3s;
+  border-radius: var(--radius-lg);
+  transition: var(--transition-normal);
 }
 
 .action-boxes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--box-min-width), 1fr));
+  gap: var(--spacing-md);
 }
 
 .action-box {
-  width: 100%; /* reduced width */
-  height: 100%; /* reduced height */
-  padding: 4px; /* slightly smaller padding */
-  background: linear-gradient(to right bottom, #007bff, #4f44ed) padding-box,
-              linear-gradient(145deg, transparent 35%, #40c9ff, #381eff) border-box;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-4);
+  background: var(--gradient-action) padding-box,
+              var(--gradient-border) border-box;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-medium);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transform: translateX(2rem);
-  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-  margin: 4px;
+  transform: translateX(var(--spacing-lg));
+  transition: all var(--transition-bounce);
+  margin: var(--spacing-4);
 }
 
 .action-box a {
   display: inline;
-  margin-top: 1rem;
-  background: rgb(0 48 152);
+  margin-top: var(--spacing-sm);
+  background: var(--color-medium-blue);
   color: white;
   padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   text-decoration: none;
-  transition: background 0.3s;
+  transition: background var(--transition-normal);
 }
 
 .action-box a:hover {
-  background: #01268c;
+  background: var(--color-dark-blue);
 }
 
 .action-box label {
-  margin-bottom: 2.5rem; /* slightly reduced spacing */
+  margin-bottom: var(--spacing-xl);
   color: white;
   text-align: center;
-  margin: 2rem;
-
+  margin: var(--spacing-lg);
 }
 
 .action-box h3 {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
-.action-box strong, p {
-  color:#ffffff;
+.action-box strong, 
+.action-box p {
+  color: var(--color-white);
 }
 
 .table-custom {
-    width: 100%; /* Adjust width as needed */
-    border-collapse: collapse; /* Remove space between table cells */
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.table-custom th, .table-custom td {
-    padding: 8px;
-    text-align: left;
+.table-custom th, 
+.table-custom td {
+  padding: var(--spacing-8);
+  text-align: left;
 }
 
 .table-custom th {
-    background-color: #007bff;
-    color: white;
+  background-color: var(--color-primary-blue);
+  color: white;
 }
 
 .table-custom td {
-    border: 1px solid #ddd; /* Adds a border to the cells */
+  border: 1px solid var(--color-border);
 }
 
 .table-custom tr:nth-child(even) {
-    background-color: #f2f2f2; /* Optional: Add a different background for even rows */
+  background-color: var(--color-bg-alt);
 }
 
 .table-custom tr:hover {
-    background-color: #ddd; /* Optional: Highlight row on hover */
+  background-color: var(--color-border);
 }
 
 .btn {
   padding: 0.4rem 0.8rem;
   background: #92aefb;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   text-decoration: none;
-  font-size: 0.85rem;
-  margin-right: 5px;
-  margin-top: 5px;
+  font-size: var(--font-size-sm);
+  margin-right: var(--spacing-5);
+  margin-top: var(--spacing-5);
   display: inline-block;
 }
 
 button.btn-logout {
   text-decoration: none;
-  color: rgb(255, 255, 255);
-  padding: 8px 16px;
-  background: linear-gradient(to bottom right, #c766ee, #3158d6) padding-box;
-  border-radius: 8px;
-  border: None;
+  color: var(--color-white);
+  padding: var(--spacing-8) var(--spacing-16);
+  background: var(--gradient-hover) padding-box;
+  border-radius: var(--radius-lg);
+  border: none;
 }
 
-button.btn-logout:hover{
+button.btn-logout:hover {
   transform: translateY(-3px);
-  background: linear-gradient(to bottom right, #007bff, #4f44ed) padding-box;
-  transition: calc(1s);
+  background: var(--gradient-action) padding-box;
+  transition: var(--transition-slow);
 }
 
 .supplier-link {
   display: flex;
   text-decoration: none;
-  color: rgb(255, 255, 255);
-  background: linear-gradient(to bottom right, #007bff, #4f44ed) padding-box;
-  border-radius: 8px;
+  color: var(--color-white);
+  background: var(--gradient-action) padding-box;
+  border-radius: var(--radius-lg);
   align-items: center;
 }
 
-
 .supplier-link:hover {
-  background: linear-gradient(to bottom right, #c766ee, #3158d6) padding-box;
+  background: var(--gradient-hover) padding-box;
   transform: translateY(-3px);
-  transition: calc(1s);
+  transition: var(--transition-slow);
 }
 
 .form-actions {
-  margin-top: 1rem;
+  margin-top: var(--spacing-sm);
   text-align: center;
 }
 
 textarea {
   width: 100%;
-  box-sizing: border-box; /* Makes sure padding is included in width */
-  resize: vertical; /* Prevents horizontal resize */
+  box-sizing: border-box;
+  resize: vertical;
   border: none;
   outline: none;
-  border-radius: 15px;
+  border-radius: var(--radius-3xl);
   padding: 1em;
-  background-color: #ffffff;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: 300ms ease-in-out;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-inset);
+  transition: var(--transition-smooth);
 }
-
 
 input {
   border: none;
-  margin: 1px;  
+  margin: var(--spacing-1);
   outline: none;
-  border-radius: 15px;
+  border-radius: var(--radius-3xl);
   padding: 1em;
-  background-color: #ffffff;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: 300ms ease-in-out;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-inset);
+  transition: var(--transition-smooth);
 }
 
 select {
   border: none;
   outline: none;
-  border-radius: 15px;
-  padding: 5px;
-  background-color: #ffffff;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: 300ms ease-in-out;  
+  border-radius: var(--radius-3xl);
+  padding: var(--spacing-5);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-inset);
+  transition: var(--transition-smooth);
   margin-top: auto;
 }
 
-
-.table-custom td, td {
-  /* Spacing */
+.table-custom td, 
+td {
   padding: 0.9rem 1.5rem;
-  
-  /* Cell display and alignment (incorporating your required properties) */
-  display: table-cell; 
-  vertical-align: middle; /* Centers content vertically for a cleaner look */
+  display: table-cell;
+  vertical-align: middle;
   unicode-bidi: isolate;
   text-align: left;
-  /* Borders and Background */
-  background:  linear-gradient(to bottom right, #214dc5, #4b93e0) padding-box;
-  border:2px solid #ffffff; /* Subtle bottom border */
-  
-  /* Smooth interaction */
-  transition: background-color 0.2s ease;
+  background: var(--gradient-primary) padding-box;
+  border: var(--border-width) solid var(--color-white);
+  transition: background-color var(--transition-fast);
 }
 
 th {
-  border-top-left-radius: 30px 30px;
-  border-top-right-radius: 30px 30px;
-  border-bottom-left-radius: 30px 30px;
-  border-bottom-right-radius: 30px 30px;
-  padding: 5px;
-  background: linear-gradient(to bottom right, #214dc5, #4b93e0) padding-box;
+  border-top-left-radius: var(--radius-round);
+  border-top-right-radius: var(--radius-round);
+  border-bottom-left-radius: var(--radius-round);
+  border-bottom-right-radius: var(--radius-round);
+  padding: var(--spacing-5);
+  background: var(--gradient-primary) padding-box;
 }
 
 .t-btn {
-  margin: 5px;
-  padding: 5px;
+  margin: var(--spacing-5);
+  padding: var(--spacing-5);
 }

@@ -23,6 +23,7 @@ from rest_framework_nested import routers
 # Import your viewsets
 from Suppliers.viewsets import SuppliersViewSet
 from products.viewsets import ProductsViewSet, PromoViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 # Main router for top-level resources
 router = routers.DefaultRouter()
@@ -35,6 +36,9 @@ router.register(r'promos', PromoViewSet, basename='promos')
 # suppliers_router.register(r'products', ProductsViewSet, basename='supplier-products')
 
 urlpatterns = [
+    #token urls
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # Admin and authentication URLs
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
